@@ -32,48 +32,6 @@
 	font-weight: bold;
 }
 
-/* Profile */
-.active .person {
-	display: none;
-}
-.full-profile {
-	background: #fff;
-	padding: 2rem;
-	position: relative;
-}
-.profile-link.close {
-	background: #981e32;
-	color: #fff;
-	height: 2rem;
-	line-height: 2rem;
-	left: 0;
-	overflow: hidden;
-	position: absolute;
-	text-align: center;
-	top: 0;
-	width: 2rem;
-	z-index: 1;
-}
-.profile-link.close:hover {
-	background: #c60c30;
-}
-
-.wsuwp-person-container.active {
-	width: 100%;
-}
-.wsuwp-person-container.active .article-title {
-	padding-top: 0;
-}
-.contact {
-	padding-bottom: 0;
-}
-.dashicons {
-	font-size: 14px;
-	height: 14px;
-	padding-top: 3px;
-	text-align: left;
-}
-
 /* Filters */
 .people-actions {
 	display: block;
@@ -136,8 +94,60 @@ label span:hover {
 	background: #464e54;
 }
 :checked + span {
-	font-weight: bold;background: #981e32;
+	font-weight: bold;
+	background: #981e32;
 }
+
+
+/* Profile */
+.cahnrs-profile-background {
+	background: rgba(94,106,113,0.96);
+	display: none;
+	height: 100%;
+	left: 0%;
+	position: fixed;
+	text-align: center;
+	top: 0%;
+	width: 100%;
+	z-index: 99165;
+}
+.cahnrs-profile-background:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -6px; /* ? */
+}
+.cahnrs-profile {
+	background: #fff;
+	display: inline-block;
+	max-width: 990px;
+	padding: 2rem;
+	position: relative;
+	text-align: left;
+	vertical-align: middle;
+	width: 100%;
+}
+.profile-link.close {
+	background: #981e32;
+	color: #fff;
+	height: 2rem;
+	line-height: 2rem;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 2rem;
+	z-index: 1;
+}
+.profile-link.close:hover {
+	background: #c60c30;
+}
+.cahnrs-profile .contact {
+	padding-bottom: 0;
+}
+
 
 @media only screen and (max-width: 693px) {
 	

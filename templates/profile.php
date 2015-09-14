@@ -34,7 +34,9 @@ $website = $person->website;
 $departments = $person->terms->wsuwp_university_org;
 $locations   = $person->terms->wsuwp_university_location;
 ?>
-<div class="full-profile">
+<div class="cahnrs-profile-background">
+
+	<div class="cahnrs-profile">
 
 	<a class="profile-link close" href="#">x</a>
 
@@ -74,8 +76,8 @@ $locations   = $person->terms->wsuwp_university_location;
 		<?php endif; ?>
 	</div>-->
 
-
-
 		<?php echo $person->content; ?>
+
+	</div>
 
 </div>

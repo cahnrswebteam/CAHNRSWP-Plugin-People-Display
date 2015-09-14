@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
 			profiles.show('fast');
 		}
 
-	});
+	})
 
 	// Search.
 	$( '.people-actions' ).on( 'keyup', '#people-search', function() {
@@ -40,10 +40,10 @@ jQuery(document).ready(function($){
 			profiles.show('fast');
 		}
 
-	});
+	})
 
 	// Show or hide a profile.
-	$( '.wsuwp-person-container' ).on( 'click', '.profile-link', function(e) {
+	$( '.wsuwp-people-wrapper' ).on( 'click', '.profile-link', function(e) {
 
 		e.preventDefault();
 
@@ -54,17 +54,9 @@ jQuery(document).ready(function($){
 				actions = $( '.people-actions' );
 
 		if ( p_link.hasClass( 'close' ) ) {
-			//p_link.removeClass( 'close' );
-			profile.removeClass( 'active' );
-			profile.find( '.full-profile' ).remove();
-			others.show( 'fast ');
-			actions.show( 'fast ');
+			$( '.cahnrs-profile-background' ).remove();
 			document.title = default_title;
 		} else {
-			profile.addClass( 'active' );
-			others.hide( 'fast' );
-			actions.hide( 'fast ');
-			//p_link.addClass( 'close' );
 			$.ajax({
 				url: personnel.ajaxurl,
 				type: 'post',
@@ -74,11 +66,23 @@ jQuery(document).ready(function($){
 				},
 				success: function( html ) {
 					document.title = name + ' | ' + default_title;
-					profile.append( html );
+					//profile.append( html );
+					$( html ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
 				}
 			})
 		}
 
-	});
+	})
+
+	$( '.wsuwp-person-container img' ).filter( '[data-photo]' ).each( function() {
+		$(this).attr( 'src', $(this).data( 'photo' ) );
+		/*if(lsrc.length > 0){
+			 var img = new Image();
+			 img.src = lsrc;
+			 $(img).load(function() {
+					 this_image.src = this.src;
+			 });
+	 }*/
+	})
 
 });

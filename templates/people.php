@@ -10,13 +10,11 @@ if ( $person->terms->wsuwp_university_location ) {
 
 	<div class="person">
 
-		<img src="<?php
+		<img src="<?php echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) ); ?>" <?php
 			if ( isset( $person->profile_photo ) && $person->profile_photo ) {
-    		echo esc_url( $person->profile_photo );
-			} else {
-				echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) );
+    		echo ' data-photo="' . esc_url( $person->profile_photo ) . '"';
 			}
-		?>" />
+		?> />
 
 		<header class="card">
 			<div class="wsuwp-person-name">
