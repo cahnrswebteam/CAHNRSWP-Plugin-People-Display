@@ -1,34 +1,44 @@
 /* Extension */
-.wsuwp-people-wrapper.extension * {
+.wsuwp-people-wrapper {
+	color: #5e6a71;
+}
+.row .wsuwp-people-wrapper a {
+	color: #981e32;
+}
+.row .wsuwp-people-wrapper a:hover {
+	color: #c60c30;
+}
+.wsuwp-people-wrapper.default * {
 	box-sizing: border-box;
 }
-.extension .wsuwp-person-container {
+.default .wsuwp-person-container {
 	display: block;
 	float: left;
 	padding-bottom: 225px; padding-bottom: 25%;
 	position: relative;
 	width: 150px; width: 12.5%;
 }
-.extension .person {
+.default .person {
 	background-color: #fff;
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 5px;
 	bottom: 5px;
+	display: block;
 	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 5px;
 	text-decoration: none;
+	top: 0;
 }
-.extension .person img {
+.default .person img {
 	display: block;
 	height: auto;
 	max-width: 100%;
 	width: 100%;
 }
-.extension .card {
+.default .card {
 	padding: 0.5rem;
 }
-.extension .wsuwp-person-name {
+.default .wsuwp-person-name {
 	font-weight: bold;
 }
 
@@ -88,6 +98,7 @@
 	display: none;
 }
 label span {
+	cursor: pointer;
 	font-size: 14px;
 }
 label span:hover {
@@ -120,6 +131,7 @@ label span:hover {
 }
 .cahnrs-profile {
 	background: #fff;
+	box-shadow: 0px 5px 25px 0px rgba(70,78,84,0.75);
 	display: inline-block;
 	max-width: 990px;
 	padding: 2rem;
@@ -128,7 +140,7 @@ label span:hover {
 	vertical-align: middle;
 	width: 100%;
 }
-.profile-link.close {
+.row .wsuwp-people-wrapper a.close-profile {
 	background: #981e32;
 	color: #fff;
 	height: 2rem;
@@ -150,5 +162,40 @@ label span:hover {
 
 
 @media only screen and (max-width: 693px) {
-	
+	.default .wsuwp-person-container {
+		width: 33.3%;
+	}
+}
+
+@media only screen and (min-width:990px) {
+	.default .wsuwp-person-container {
+		padding-bottom: 30%;
+		width: 16.65%;
+	}
+	.people-actions {
+		padding-bottom: 60%;
+		width: 33.3%;
+	}
+}
+
+@media only screen and (min-width:1188px) {
+	.default .wsuwp-person-container {
+		padding-bottom: 30%;
+		width: 16.65%;
+	}
+	.people-actions {
+		padding-bottom: 60%;
+		width: 33.3%;
+	}
+}
+
+@media only screen and (min-width:1386px) {
+	.default .wsuwp-person-container {
+		padding-bottom: 22%;
+		width: 12.5%;
+	}
+	.people-actions {
+		padding-bottom: 44%;
+		width: 25%;
+	}
 }

@@ -12,6 +12,8 @@ class CAHNRSWP_People_Display {
 	 * Hooks.
 	 */
 	public function __construct() {
+		//add_filter( 'shortcode_atts_', array( $this, 'extended_atts' ), 10, 3 );
+		add_filter( 'shortcode_atts_wsuwp_people', array( $this, 'extended_atts' ), 10, 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 21 );
 		add_filter( 'wsuwp_people_html', array( $this, 'people_wrapper_html' ), 10, 3 );
 		add_filter( 'wsuwp_people_sort_items', array( $this, 'people_sort' ), 10, 1 );
@@ -20,8 +22,28 @@ class CAHNRSWP_People_Display {
 		add_action( 'wp_ajax_profile_request', array( $this, 'profile_request' ) );
 	}
 
+	public function extended_atts( $out, $pairs, $atts ) {
+		//if ( $out['query'] == 'posts/?type=wsuwp_people_profile' ) ) {
+			//remove_filter( current_filter(), __FUNCTION__ );
+
+		if ( isset( $atts['output'] ) ) {
+			$out['output'] = $atts['output'];
+		} else {
+			$out['output'] = 'default';
+		}
+		if ( isset( $atts['actions'] ) ) {
+			$out['actions'] = $atts['actions'];
+		}
+		if ( isset( $atts['head'] ) ) {
+			$out['head'] = $atts['head'];
+		}
+
+		//}
+		return $out;
+	}
+
 	/**
-	 * Enqueue custom scripts.
+	 * Enqueue custom scripts and styles for frontend.
 	 */
 	public function enqueue_scripts() {
 		$post = get_post();
@@ -36,14 +58,14 @@ class CAHNRSWP_People_Display {
 	 * The non-profile stuff.
 	 */
 	public function people_wrapper_html( $html, $people, $atts ) {
-		if ( $atts['filters'] ) {
-			$filters = explode( ',', $atts['filters'] );
-		}
-		ob_start();
-		include_once( __DIR__ . '/templates/people-actions.php' );
-		$html = ob_get_contents();
-		ob_end_clean();
-		return $html;
+		if ( $atts['actions'] ) {
+			$actions = explode( ',', $atts['actions'] );
+			ob_start();
+			include_once( __DIR__ . '/templates/people-actions.php' );
+			$html = ob_get_contents();
+			ob_end_clean();
+			return $html;
+		}	
 	}
 
 	/**
