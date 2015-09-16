@@ -3,12 +3,12 @@ jQuery(document).ready(function($){
 	var default_title = document.title;
 
 	// Show/hide profiles according to selected filter options.
-	$( '.filter .items li label' ).on( 'change', 'input:checkbox', function() {
+	$( '.filter .browse-terms li label' ).on( 'change', 'input:checkbox', function() {
 
 		var sort_class = new Array(),
 				profiles = $( '.wsuwp-people-wrapper' ).find( '.wsuwp-person-container' );
 
-		$( '.filter .items input:checkbox:checked' ).each( function() {
+		$( '.filter .browse-terms input:checkbox:checked' ).each( function() {
 			sort_class.push( '.' + $(this).data('filter') + '-' + $(this).attr('value') );
 		});
 

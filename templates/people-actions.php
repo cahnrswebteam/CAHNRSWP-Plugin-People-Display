@@ -1,4 +1,10 @@
-<div class="people-actions">
+<?php
+$classes = array();
+foreach ( $actions as $action ) {
+	$classes[] = ' ' .  $action;
+}
+?>
+<div class="people-actions<?php foreach ( $classes as $class ) { echo $class; } ?>">
 
 	<div class="people-actions-inner">
 
@@ -22,7 +28,7 @@
 			?>
 				<h2>Locations</h2>
 				<div class="filter locations-container">
-					<ul class="items browse-terms locations">
+					<ul class="browse-terms locations">
 					<?php foreach ( $locations_sortable_items as $item ) { ?>
 						<li class="wsuwp_university_location-<?php echo $item['slug']; ?>">
             	<label>
