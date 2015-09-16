@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
 
 	var default_title = document.title;
 
-	// Sort according to selected filter options.
+	// Show/hide profiles according to selected filter options.
 	$( '.filter .items li label' ).on( 'change', 'input:checkbox', function() {
 
 		var sort_class = new Array(),
@@ -42,47 +42,57 @@ jQuery(document).ready(function($){
 
 	})
 
-	// Show or hide a profile.
+	// Show a full profile.
 	$( '.wsuwp-people-wrapper' ).on( 'click', '.profile-link', function(e) {
 
 		e.preventDefault();
 
-		var p_link  = $(this),
-				name    = p_link.text(),
-				profile = p_link.parents( '.wsuwp-person-container' ),
-				others  = profile.siblings( '.wsuwp-person-container' ),
-				actions = $( '.people-actions' );
+		$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
 
-		if ( p_link.hasClass( 'close' ) ) {
+		$.ajax({
+			url: personnel.ajaxurl,
+			type: 'post',
+			data: {
+				action: 'profile_request',
+				profile: $(this).data( 'id' )
+			},
+			success: function( html ) {
+				document.title = name + ' | ' + default_title;
+				//profile.append( html );
+				//$( html ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
+				$( '.cahnrs-profile-background' ).html( html );
+			}
+		})
+
+	})
+
+	// Close a profile.
+	$( '.wsuwp-people-wrapper' ).on( 'click', '.close-profile', function(e) {
+
+		e.preventDefault();
+
+		if ( e.target == this ) {
 			$( '.cahnrs-profile-background' ).remove();
 			document.title = default_title;
-		} else {
-			$.ajax({
-				url: personnel.ajaxurl,
-				type: 'post',
-				data: {
-					action: 'profile_request',
-					profile: $(this).data( 'id' )
-				},
-				success: function( html ) {
-					document.title = name + ' | ' + default_title;
-					//profile.append( html );
-					$( html ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
-				}
-			})
 		}
 
 	})
 
+	// Load images asynchronously.
 	$( '.wsuwp-person-container img' ).filter( '[data-photo]' ).each( function() {
+
 		$(this).attr( 'src', $(this).data( 'photo' ) );
-		/*if(lsrc.length > 0){
-			 var img = new Image();
-			 img.src = lsrc;
-			 $(img).load(function() {
-					 this_image.src = this.src;
-			 });
-	 }*/
+		
+		/*var image = $(this),
+				new_src = image.data( 'photo' );
+		if ( new_src.length > 0 ) {
+			var img = new Image();
+			img.src = new_src;
+			$(img).load(function() {
+				image.attr( 'src', new_src );
+			});
+		}*/
+		
 	})
 
 });

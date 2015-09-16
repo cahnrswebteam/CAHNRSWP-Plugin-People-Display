@@ -34,11 +34,13 @@ $website = $person->website;
 $departments = $person->terms->wsuwp_university_org;
 $locations   = $person->terms->wsuwp_university_location;
 ?>
-<div class="cahnrs-profile-background">
+<div class="cahnrs-profile">
 
-	<div class="cahnrs-profile">
+	<a class="close-profile" href="#">x</a>
 
-	<a class="profile-link close" href="#">x</a>
+	<?php if ( $photo ) : ?>
+		<figure class="profile-photo alignright"><img alt="<?php echo esc_attr( $person->title ) ?>" src="<?php echo esc_attr( $photo ); ?>" /></figure>
+	<?php endif; ?>
 
   <header class="article-header">
     <hgroup>
@@ -70,14 +72,6 @@ $locations   = $person->terms->wsuwp_university_location;
   <p class="contact website"><span class="dashicons dashicons-external"></span><a href="<?php echo esc_url( $website ); ?>">Website</a></p>
   <?php endif; ?>
 
-	<!--<div class="column two">
-		<?php if ( $photo ) : ?>
-			<figure class="profile-photo"><img alt="<?php echo esc_attr( $person->title ) ?>" src="<?php echo esc_attr( $photo ); ?>" /></figure>
-		<?php endif; ?>
-	</div>-->
-
-		<?php echo $person->content; ?>
-
-	</div>
+	<?php echo $person->content; ?>
 
 </div>
