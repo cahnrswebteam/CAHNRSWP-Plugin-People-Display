@@ -16,7 +16,7 @@ class CAHNRSWP_People_Display {
 		add_filter( 'shortcode_atts_wsuwp_people', array( $this, 'extended_atts' ), 10, 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 21 );
 		add_filter( 'wsuwp_people_html', array( $this, 'people_wrapper_html' ), 10, 3 );
-		add_filter( 'wsuwp_people_sort_items', array( $this, 'people_sort' ), 10, 1 );
+		add_filter( 'wsuwp_people_sort_items', array( $this, 'people_sort' ), 10, 2 );
 		add_filter( 'wsuwp_people_item_html', array( $this, 'people_html' ), 10, 3 );
 		add_action( 'wp_ajax_nopriv_profile_request', array( $this, 'profile_request' ) );
 		add_action( 'wp_ajax_profile_request', array( $this, 'profile_request' ) );
@@ -25,7 +25,6 @@ class CAHNRSWP_People_Display {
 	public function extended_atts( $out, $pairs, $atts ) {
 		//if ( $out['query'] == 'posts/?type=wsuwp_people_profile' ) ) {
 			//remove_filter( current_filter(), __FUNCTION__ );
-
 		if ( isset( $atts['output'] ) ) {
 			$out['output'] = $atts['output'];
 		} else {
@@ -37,13 +36,12 @@ class CAHNRSWP_People_Display {
 		if ( isset( $atts['head'] ) ) {
 			$out['head'] = $atts['head'];
 		}
-
 		//}
 		return $out;
 	}
 
 	/**
-	 * Enqueue custom scripts and styles for frontend.
+	 * Enqueue custom scripts and styles for the frontend.
 	 */
 	public function enqueue_scripts() {
 		$post = get_post();
@@ -55,10 +53,16 @@ class CAHNRSWP_People_Display {
 	}
 
 	/**
-	 * The non-profile stuff.
+	 * Custom HTML template for use with syndicated people.
+	 *
+	 * @param string   $html   The HTML to output for an individual person.
+	 * @param stdClass $person Object representing a person received from people.wsu.edu.
+	 * @param array    $atts   The shortcode attributes.
+	 *
+	 * @return string The HTML to output for a person.
 	 */
 	public function people_wrapper_html( $html, $people, $atts ) {
-		if ( $atts['actions'] ) {
+		if ( $atts['actions'] && '' != $atts['actions'] ) {
 			$actions = explode( ',', $atts['actions'] );
 			ob_start();
 			include_once( __DIR__ . '/templates/people-actions.php' );
@@ -71,18 +75,23 @@ class CAHNRSWP_People_Display {
 	/**
 	 * Use the provided Content Syndicate filter to sort people results before displaying.
 	 */
-	public function people_sort( $people ) {
-		usort( $people, array( $this, 'sort_alpha' ) );
-		if ( 1 === ( count( $people ) % 2 ) ) {
-			$person = new stdClass();
-			$person->title = '';
-			$person->office = '';
-			$person->position_title = '';
-			$person->email = '';
-			$person->phone = '';
-			$people[] = $person;
+	public function people_sort( $people, $atts ) {
+		if ( $atts['head'] && '' != $atts['head'] ) {
+			$heads = explode( ',', $atts['head'] );
+			$unit_heads = array();
+			foreach ( $people as $index => $person ) {
+				if ( in_array( $person->ID, $heads ) ) {
+					array_push( $unit_heads, $person );
+					unset( $people[$index] );
+				}
+			}
 		}
-		return $people;
+		usort( $people, array( $this, 'sort_alpha' ) );
+		if ( $atts['head'] && '' != $atts['head'] ) {
+			return array_merge( array_reverse( $unit_heads ), $people );
+		} else {
+			return $people;
+		}
 	}
 	/**
 	 * Sort people alphabetically by their last name.
@@ -93,14 +102,17 @@ class CAHNRSWP_People_Display {
 	 * @return int Whether person a's last name is alphabetically smaller or greater than person b's.
 	 */
 	public function sort_alpha( $a, $b ) {
+		//if ( in_array( $a->ID, $heads ) ) {
+		//}
 		return strcasecmp( $a->last_name, $b->last_name );
 	}
 
 	/**
-	 * Provide a custom HTML template for use with syndicated people.
+	 * Custom HTML template for use with syndicated people.
 	 *
 	 * @param string   $html   The HTML to output for an individual person.
 	 * @param stdClass $person Object representing a person received from people.wsu.edu.
+	 * @param string   $type   The shortcode's "output" attribute value.
 	 *
 	 * @return string The HTML to output for a person.
 	 */
