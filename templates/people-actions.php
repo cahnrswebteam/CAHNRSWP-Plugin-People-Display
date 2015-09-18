@@ -9,7 +9,7 @@ foreach ( $actions as $action ) {
 	<div class="people-actions-inner">
 
 		<?php if ( in_array( 'search', $actions ) ) : ?>
-		<input type="search" id="people-search" class="cahnrs-search-field" value="" placeholder="Search" autocomplete="off">
+		<div><input type="search" id="people-search" class="cahnrs-search-field" value="" placeholder="Search" autocomplete="off"></div>
 		<?php endif; ?>
 
 		<?php
@@ -31,10 +31,7 @@ foreach ( $actions as $action ) {
 					<ul class="browse-terms locations">
 					<?php foreach ( $locations_sortable_items as $item ) { ?>
 						<li class="wsuwp_university_location-<?php echo $item['slug']; ?>">
-            	<label>
-								<input type="checkbox" data-filter="location" value="<?php echo $item['slug']; ?>" />
-              	<span><?php echo $item['name']; ?></span>
-							</label>
+            	<label><input type="checkbox" data-filter="location" value="<?php echo $item['slug']; ?>" /><span><?php echo $item['name']; ?></span></label>
 						</li>
 					<?php } ?>
 					</ul>

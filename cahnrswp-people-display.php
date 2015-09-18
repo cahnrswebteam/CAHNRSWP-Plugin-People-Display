@@ -93,6 +93,7 @@ class CAHNRSWP_People_Display {
 			return $people;
 		}
 	}
+
 	/**
 	 * Sort people alphabetically by their last name.
 	 *

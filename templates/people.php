@@ -10,22 +10,19 @@ if ( $person->terms->wsuwp_university_location ) {
 
 	<div class="person">
 
-		<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>">
-			<img src="<?php echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) ); ?>" <?php
+		<div>
+			<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><img src="<?php echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) ); ?>" <?php
 				if ( isset( $person->profile_photo ) && $person->profile_photo ) {
     			echo ' data-photo="' . esc_url( $person->profile_photo ) . '"';
 				}
-			?> />
-		</a>
+			?> /></a>
+		</div>
 
 		<header class="card">
 			<div class="wsuwp-person-name">
 				<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><?php echo esc_html( $person->title ); ?></a>
 			</div>
 			<div class="wsuwp-person-position"><?php echo esc_html( $title ); ?></div>
-    	<!--<div class="wsuwp-person-email"><a href="mailto:<?php echo esc_html( $email ); ?>"><?php echo esc_html( $email ); ?></a></div>
-			<div class="wsuwp-person-phone"><a href="tel:<?php echo esc_html( $phone ); ?>"><?php echo esc_html( $phone ); ?></a></div>
-			<div class="wsuwp-person-office"><?php echo esc_html( $office ); ?></div>-->
 		</header>
 
 	</div>
