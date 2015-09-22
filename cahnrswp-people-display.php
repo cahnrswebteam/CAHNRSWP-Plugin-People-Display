@@ -12,7 +12,7 @@ class CAHNRSWP_People_Display {
 	 * Hooks.
 	 */
 	public function __construct() {
-		//add_filter( 'shortcode_atts_', array( $this, 'extended_atts' ), 10, 3 );
+		add_filter( 'shortcode_atts_', array( $this, 'extended_atts' ), 10, 3 );
 		add_filter( 'shortcode_atts_wsuwp_people', array( $this, 'extended_atts' ), 10, 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 21 );
 		add_filter( 'wsuwp_people_html', array( $this, 'people_wrapper_html' ), 10, 3 );
@@ -65,7 +65,7 @@ class CAHNRSWP_People_Display {
 		if ( $atts['actions'] && '' != $atts['actions'] ) {
 			$actions = explode( ',', $atts['actions'] );
 			ob_start();
-			include_once( __DIR__ . '/templates/people-actions.php' );
+			include( __DIR__ . '/templates/people-actions.php' );
 			$html = ob_get_contents();
 			ob_end_clean();
 			return $html;
@@ -88,10 +88,9 @@ class CAHNRSWP_People_Display {
 		}
 		usort( $people, array( $this, 'sort_alpha' ) );
 		if ( $atts['head'] && '' != $atts['head'] ) {
-			return array_merge( array_reverse( $unit_heads ), $people );
-		} else {
-			return $people;
+			$people = array_merge( array_reverse( $unit_heads ), $people );
 		}
+		return $people;
 	}
 
 	/**

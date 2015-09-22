@@ -73,7 +73,7 @@
 }
 .filter {
 	max-height: 120px;
-	/*overflow: hidden;*/
+	overflow-x: scroll;
 	position: relative;
 }
 .browse-terms {
@@ -107,7 +107,7 @@
 
 /* Profile */
 .cahnrs-profile-background {
-	background: rgba(94,106,113,0.96);
+	background: rgba(94,106,113,0.75);
 	display: none;
 	height: 100%;
 	left: 0%;

@@ -9,7 +9,7 @@ foreach ( $actions as $action ) {
 	<div class="people-actions-inner">
 
 		<?php if ( in_array( 'search', $actions ) ) : ?>
-		<div><input type="search" id="people-search" class="cahnrs-search-field" value="" placeholder="Search" autocomplete="off"></div>
+		<div><input type="search" class="cahnrs-search-field people-search" value="" placeholder="Search" autocomplete="off"></div>
 		<?php endif; ?>
 
 		<?php
