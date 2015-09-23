@@ -72,8 +72,9 @@
 	text-transform: uppercase;
 }
 .filter {
+	box-sizing: border-box;
 	max-height: 120px;
-	overflow-x: scroll;
+	overflow: auto;
 	position: relative;
 }
 .browse-terms {
