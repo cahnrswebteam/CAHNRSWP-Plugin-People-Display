@@ -47,6 +47,8 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
+		var name = $(this).data( 'name' );
+
 		$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
 
 		$.ajax({

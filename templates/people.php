@@ -11,7 +11,7 @@ if ( $person->terms->wsuwp_university_location ) {
 	<div class="person">
 
 		<div>
-			<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><img src="<?php echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) ); ?>" <?php
+			<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-name="<?php echo esc_html( $person->title ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><img src="<?php echo plugins_url( 'images/placeholder.jpg', dirname( __FILE__ ) ); ?>" <?php
 				if ( isset( $person->profile_photo ) && $person->profile_photo ) {
     			echo ' data-photo="' . esc_url( $person->profile_photo ) . '"';
 				}
@@ -20,7 +20,7 @@ if ( $person->terms->wsuwp_university_location ) {
 
 		<header class="card">
 			<div class="wsuwp-person-name">
-				<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><?php echo esc_html( $person->title ); ?></a>
+				<a class="profile-link" href="<?php echo esc_url( $person->link ); ?>" data-name="<?php echo esc_html( $person->title ); ?>" data-id="<?php echo esc_html( $person->ID ); ?>"><?php echo esc_html( $person->title ); ?></a>
 			</div>
 			<div class="wsuwp-person-position"><?php echo esc_html( $title ); ?></div>
 		</header>
