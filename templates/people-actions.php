@@ -14,16 +14,35 @@ foreach ( $actions as $action ) {
 
 		<?php
   	if ( in_array( 'location', $actions ) ) :
+
 			$locations_sortable_items = array();
+
 			foreach ( $people as $person ) {
-				if ( $person->terms->wsuwp_university_location ) {
-					foreach ( $person->terms->wsuwp_university_location as $item ) {
-						if ( ! in_array( array( 'slug' => esc_attr( $item->slug ), 'name' => esc_attr( $item->name ) ), $locations_sortable_items ) ) {
-							array_push( $locations_sortable_items, array( 'slug'=>esc_attr( $item->slug ), 'name'=>esc_attr( $item->name ) ) );
+				
+				$locations_response = wp_remote_get( 'http://localhost/wp-json/wp/v2/people/' . $person->id . '/terms/wsuwp_university_location', array( 'sslverify' => false ) );
+
+				if ( is_wp_error( $locations_response ) ) {
+					return '<!-- error -->';
+				}
+
+				$locations_data = wp_remote_retrieve_body( $locations_response );
+
+				if ( empty( $locations_data ) ) {
+					return '<!-- error -->';
+				}
+
+				$locations = json_decode( $locations_data );
+
+				if ( $locations ) {
+					foreach ( $locations as $location ) {
+						if ( ! in_array( array( 'slug' => esc_attr( $location->slug ), 'name' => esc_attr( $location->name ) ), $locations_sortable_items ) ) {
+							array_push( $locations_sortable_items, array( 'slug'=>esc_attr( $location->slug ), 'name'=>esc_attr( $location->name ) ) );
 						}
 					}
 				}
+
 			}
+
 			if ( ! empty( $locations_sortable_items ) ) :
 			?>
 				<h2>Locations</h2>
@@ -38,6 +57,7 @@ foreach ( $actions as $action ) {
 				</div>
 			<?php
 			endif;
+
   	endif;
 		?>
 

@@ -1,4 +1,3 @@
-
 <?php
 // Meta data.
 if ( isset( $person->working_titles[0] ) ) {
@@ -31,20 +30,20 @@ $cv      = $person->cv_attachment;
 $website = $person->website;
 
 // Taxonomy data.
-$departments = $person->terms->wsuwp_university_org;
-$locations   = $person->terms->wsuwp_university_location;
+//$departments = $person->terms->wsuwp_university_org;
+//$locations   = $person->terms->wsuwp_university_location;
 ?>
 <div class="cahnrs-profile">
 
 	<a class="close-profile" href="#">x</a>
 
 	<?php if ( $photo ) : ?>
-		<figure class="profile-photo alignright"><img alt="<?php echo esc_attr( $person->title ) ?>" src="<?php echo esc_attr( $photo ); ?>" /></figure>
+		<figure class="profile-photo alignright"><img alt="<?php echo esc_attr( $person->title->rendered ); ?>" src="<?php echo esc_attr( $photo ); ?>" /></figure>
 	<?php endif; ?>
 
   <header class="article-header">
     <hgroup>
-      <h2 class="article-title"><?php echo esc_html( $person->title ); ?></h2>
+      <h2 class="article-title"><?php echo esc_html( $person->title->rendered ); ?></h2>
     </hgroup>
   </header>
 
@@ -72,6 +71,8 @@ $locations   = $person->terms->wsuwp_university_location;
   <p class="contact website"><span class="dashicons dashicons-external"></span><a href="<?php echo esc_url( $website ); ?>">Website</a></p>
   <?php endif; ?>
 
-	<?php echo $person->content; ?>
+	<?php echo $person->content->rendered; ?>
+
+	<!-- Conditional on logged in? --><a href="<?php echo esc_url( $person->link ); ?>" class="edit-profile">Edit Profile</a>
 
 </div>

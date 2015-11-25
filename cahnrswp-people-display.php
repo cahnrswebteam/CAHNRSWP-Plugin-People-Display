@@ -12,10 +12,9 @@ class CAHNRSWP_People_Display {
 	 * Hooks.
 	 */
 	public function __construct() {
-		add_filter( 'shortcode_atts_', array( $this, 'extended_atts' ), 10, 3 );
 		add_filter( 'shortcode_atts_wsuwp_people', array( $this, 'extended_atts' ), 10, 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 21 );
-		add_filter( 'wsuwp_people_html', array( $this, 'people_wrapper_html' ), 10, 3 );
+		add_filter( 'wsuwp_people_prefix', array( $this, 'wsuwp_people_prefix' ), 10, 3 );
 		add_filter( 'wsuwp_people_sort_items', array( $this, 'people_sort' ), 10, 2 );
 		add_filter( 'wsuwp_people_item_html', array( $this, 'people_html' ), 10, 3 );
 		add_action( 'wp_ajax_nopriv_profile_request', array( $this, 'profile_request' ) );
@@ -61,8 +60,8 @@ class CAHNRSWP_People_Display {
 	 *
 	 * @return string The HTML to output for a person.
 	 */
-	public function people_wrapper_html( $html, $people, $atts ) {
-		if ( $atts['actions'] && '' != $atts['actions'] ) {
+	public function wsuwp_people_prefix( $html, $people, $atts ) {
+		if ( isset( $atts['actions'] ) && '' != $atts['actions'] ) {
 			$actions = explode( ',', $atts['actions'] );
 			ob_start();
 			include( __DIR__ . '/templates/people-actions.php' );
@@ -76,7 +75,7 @@ class CAHNRSWP_People_Display {
 	 * Use the provided Content Syndicate filter to sort people results before displaying.
 	 */
 	public function people_sort( $people, $atts ) {
-		if ( $atts['head'] && '' != $atts['head'] ) {
+		if ( isset( $atts['head'] ) && '' != $atts['head'] ) {
 			$heads = explode( ',', $atts['head'] );
 			$unit_heads = array();
 			foreach ( $people as $index => $person ) {
@@ -87,7 +86,7 @@ class CAHNRSWP_People_Display {
 			}
 		}
 		usort( $people, array( $this, 'sort_alpha' ) );
-		if ( $atts['head'] && '' != $atts['head'] ) {
+		if ( isset( $atts['head'] ) && '' != $atts['head'] ) {
 			$people = array_merge( array_reverse( $unit_heads ), $people );
 		}
 		return $people;
@@ -149,7 +148,7 @@ class CAHNRSWP_People_Display {
 	 */
 	public function profile_request() {
 		if ( $_POST['profile'] ) {
-			$response = wp_remote_get( 'https://people.wsu.edu/wp-json/posts/' . $_POST['profile'], array( 'sslverify' => false ) );
+			$response = wp_remote_get( 'http://localhost/wp-json/wp/v2/people/' . $_POST['profile'], array( 'sslverify' => false ) );
 			if ( is_wp_error( $response ) ) {
 				return '<!-- error -->';
 			}
