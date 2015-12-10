@@ -79,7 +79,7 @@ class CAHNRSWP_People_Display {
 			$heads = explode( ',', $atts['head'] );
 			$unit_heads = array();
 			foreach ( $people as $index => $person ) {
-				if ( in_array( $person->ID, $heads ) ) {
+				if ( in_array( $person->id, $heads ) ) {
 					array_push( $unit_heads, $person );
 					unset( $people[$index] );
 				}
