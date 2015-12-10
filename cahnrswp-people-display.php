@@ -3,7 +3,7 @@
 Plugin Name: CAHNRSWP People Display
 Description: A plugin for displaying lists of profiles from people.wsu.edu.
 Author: CAHNRS, philcable
-Version: 0.0.1
+Version: 0.0.11
 */
 
 class CAHNRSWP_People_Display {
@@ -148,7 +148,7 @@ class CAHNRSWP_People_Display {
 	 */
 	public function profile_request() {
 		if ( $_POST['profile'] ) {
-			$response = wp_remote_get( 'http://localhost/wp-json/wp/v2/people/' . $_POST['profile'], array( 'sslverify' => false ) );
+			$response = wp_remote_get( 'https://people.wsu.edu/wp-json/wp/v2/people/' . $_POST['profile'], array( 'sslverify' => false ) );
 			if ( is_wp_error( $response ) ) {
 				return '<!-- error -->';
 			}

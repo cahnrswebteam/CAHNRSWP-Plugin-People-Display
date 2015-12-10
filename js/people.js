@@ -69,9 +69,8 @@ jQuery(document).ready(function($){
 	// Close a profile.
 	$( '.wsuwp-people-wrapper' ).on( 'click', '.close-profile', function(e) {
 
-		e.preventDefault();
-
 		if ( e.target == this ) {
+			e.preventDefault();
 			$( '.cahnrs-profile-background' ).remove();
 			document.title = default_title;
 		}
