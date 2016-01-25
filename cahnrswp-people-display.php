@@ -14,13 +14,21 @@ class CAHNRSWP_People_Display {
 	public function __construct() {
 		add_filter( 'shortcode_atts_wsuwp_people', array( $this, 'extended_atts' ), 10, 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 21 );
-		add_filter( 'wsuwp_people_prefix', array( $this, 'wsuwp_people_prefix' ), 10, 3 );
+		add_filter( 'wsuwp_people_prepend', array( $this, 'wsuwp_people_prepend' ), 10, 3 );
+		add_filter( 'wsuwp_people_append', array( $this, 'wsuwp_people_append' ), 10, 3 );
 		add_filter( 'wsuwp_people_sort_items', array( $this, 'people_sort' ), 10, 2 );
 		add_filter( 'wsuwp_people_item_html', array( $this, 'people_html' ), 10, 3 );
 		add_action( 'wp_ajax_nopriv_profile_request', array( $this, 'profile_request' ) );
 		add_action( 'wp_ajax_profile_request', array( $this, 'profile_request' ) );
 	}
 
+	/**
+	 *
+	 *
+	 * @param array $out
+	 * @param array $pairs
+	 * @param array $atts  Shortcode attributes.
+	 */
 	public function extended_atts( $out, $pairs, $atts ) {
 		//if ( $out['query'] == 'posts/?type=wsuwp_people_profile' ) ) {
 			//remove_filter( current_filter(), __FUNCTION__ );
@@ -52,23 +60,36 @@ class CAHNRSWP_People_Display {
 	}
 
 	/**
-	 * Custom HTML template for use with syndicated people.
+	 * Custom HTML to prepend to the syndicated people output.
 	 *
-	 * @param string   $html   The HTML to output for an individual person.
-	 * @param stdClass $person Object representing a person received from people.wsu.edu.
+	 * @param string   $html   The HTML to output before syndicated people output.
+	 * @param stdClass $people Object representing people received from people.wsu.edu.
 	 * @param array    $atts   The shortcode attributes.
 	 *
-	 * @return string The HTML to output for a person.
+	 * @return string The modified HTML to output before syndicated people output.
 	 */
-	public function wsuwp_people_prefix( $html, $people, $atts ) {
+	public function wsuwp_people_prepend( $html, $people, $atts ) {
+		ob_start();
 		if ( isset( $atts['actions'] ) && '' != $atts['actions'] ) {
 			$actions = explode( ',', $atts['actions'] );
-			ob_start();
-			include( __DIR__ . '/templates/people-actions.php' );
-			$html = ob_get_contents();
-			ob_end_clean();
-			return $html;
-		}	
+			include( __DIR__ . '/templates/actions.php' );
+		}
+		if ( 'table' === $atts['output'] ) {
+			?>
+      <table>
+  			<thead>
+    			<tr>
+      			<th>Faculty</th>
+      			<th>Contact</th>
+      			<th>About</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+			<?php
+		}
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
 	}
 
 	/**
@@ -136,11 +157,36 @@ class CAHNRSWP_People_Display {
 		} else {
 			$phone = $person->phone;
 		}
+		
 		ob_start();
-		include( __DIR__ . '/templates/people.php' );
+
+		include( __DIR__ . '/templates/' . $type . '.php' );
+
 		$html = ob_get_contents();
 		ob_end_clean();
 		return $html;
+	}
+
+	/**
+	 * Custom HTML to append to the syndicated people output.
+	 *
+	 * @param string   $html   The HTML to output after syndicated people output.
+	 * @param stdClass $people Object representing people received from people.wsu.edu.
+	 * @param array    $atts   The shortcode attributes.
+	 *
+	 * @return string The modified HTML to output after syndicated people output.
+	 */
+	public function wsuwp_people_append( $html, $people, $atts ) {
+		if ( 'table' === $atts['output'] ) {
+			ob_start();
+			?>
+      	</tbody>
+      </table>
+			<?php
+			$html = ob_get_contents();
+			ob_end_clean();
+			return $html;
+		}
 	}
 
 	/**

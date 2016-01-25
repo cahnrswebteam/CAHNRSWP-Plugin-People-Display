@@ -73,6 +73,6 @@ $website = $person->website;
 
 	<?php echo $person->content->rendered; ?>
 
-	<!-- Conditional on logged in? --><a href="<?php echo esc_url( $person->link ); ?>" class="edit-profile">Edit Profile</a>
+	<?php /*if ( is_user_logged_in() ) : ?><a href="<?php echo esc_url( $person->link ); ?>" class="edit-profile">Edit Profile</a><?php endif;*/ ?>
 
 </div>

@@ -6,13 +6,12 @@ foreach ( $actions as $action ) {
 ?>
 <div class="people-actions<?php foreach ( $classes as $class ) { echo $class; } ?>">
 
-	<div class="people-actions-inner">
+	<div class="people-actions-inner"><?php
+  
+		if ( in_array( 'search', $actions ) ) :
+		?><div><input type="search" class="cahnrs-search-field people-search" value="" placeholder="Search" autocomplete="off"></div><?php
+		endif;
 
-		<?php if ( in_array( 'search', $actions ) ) : ?>
-		<div><input type="search" class="cahnrs-search-field people-search" value="" placeholder="Search" autocomplete="off"></div>
-		<?php endif; ?>
-
-		<?php
   	if ( in_array( 'location', $actions ) ) :
 
 			$locations_sortable_items = array();
@@ -59,8 +58,7 @@ foreach ( $actions as $action ) {
 			endif;
 
   	endif;
-		?>
 
-	</div>
+	?></div>
 
 </div>
