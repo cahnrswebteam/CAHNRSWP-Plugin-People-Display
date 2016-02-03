@@ -71,7 +71,8 @@
 .table .wsuwp-person-container:nth-of-type(even) {
 	background-color: #f9f9f9;
 }
-.table .wsuwp-person-container .photo {
+.table .wsuwp-person-container .photo,
+.table .wsuwp-person-container .photo img {
 	width: 84px;
 }
 .table .wsuwp-person-container .card {
@@ -239,6 +240,9 @@
 	.table .wsuwp-person-container .photo {
 		float: left;
 		padding: 1rem 0.5rem 0.5rem 1rem;
+		width: 124px;
+	}
+	.table .wsuwp-person-container .photo img {
 		width: 124px;
 	}
 	.table .wsuwp-person-container .card {
