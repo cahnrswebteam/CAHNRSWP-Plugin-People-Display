@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
 
 		var name = $(this).data( 'name' );
 
-		$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( '.wsuwp-people-wrapper' ).fadeIn(500);
+		$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( $(this).parents('.wsuwp-people-wrapper') ).fadeIn(500);
 
 		$.ajax({
 			url: personnel.ajaxurl,
