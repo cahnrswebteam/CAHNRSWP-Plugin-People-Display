@@ -73,7 +73,7 @@
 }
 .table .wsuwp-person-container .photo,
 .table .wsuwp-person-container .photo img {
-	width: 84px;
+	width: 100px;
 }
 .table .wsuwp-person-container .card {
 	width: 234px;
@@ -145,8 +145,14 @@
 .browse-terms :checked + span:hover {
 	background: #c60c30;
 }
+input[type="search"]::-webkit-search-decoration {
+	display: none;
+}
+.cahnrs-search-field {
+	text-indent: 1rem;
+}
 
-/* Profile */
+/* Profile, individual */
 .cahnrs-profile-background {
 	background: rgba(94,106,113,0.75);
 	display: none;
@@ -167,10 +173,12 @@
 }
 .cahnrs-profile {
 	background: #fff;
-	box-shadow: 0px 5px 25px 0px rgba(70,78,84,0.75);
+	box-shadow: 0px 5px 25px 0px rgba(70,78,84,0.95);
 	box-sizing: border-box;
 	display: inline-block;
+	max-height: 90%;
 	max-width: 990px;
+	overflow: auto;
 	padding: 2rem;
 	position: relative;
 	text-align: left;
@@ -182,18 +190,18 @@
 	color: #fff;
 	height: 2rem;
 	line-height: 2rem;
-	left: 0;
+	margin: -3rem auto auto -3rem;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	text-align: center;
-	top: 0;
 	width: 2rem;
 	z-index: 1;
 }
-.profile-link.close:hover {
+.row .wsuwp-people-wrapper a.close-profile:hover {
 	background: #c60c30;
 }
-.cahnrs-profile .contact {
+.cahnrs-profile .contact,
+.individual .contact {
 	padding-bottom: 0;
 }
 .row .wsuwp-people-wrapper .edit-profile {
@@ -202,7 +210,11 @@
 	right: 1rem;
 	top: 0.4rem;
 }
-
+@media screen and (max-width:1022px) {
+	.row .wsuwp-people-wrapper a.close-profile {
+		margin: -2rem auto auto -2rem;
+	}
+}
 @media screen and (max-width:791px) {
 	.people-actions {
 		float: none;
