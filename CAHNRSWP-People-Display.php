@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: CAHNRSWP People Displays 
+* Plugin Name: CAHNRSWP People Display - V2 
 * Plugin URI:  http://cahnrs.wsu.edu/communications/
 * Description: CAHNRSWP People Display Displays from content on people.wsu.edu
 * Version:     0.1
@@ -26,17 +26,17 @@ class CAHNRSWP_People_Displays_Library {
 	
 	public function __construct() {
 		
-		require_once('classes/class-cahnrswp-people-displays.php');
-		require_once('classes/class-cahnrswp-people-displays-general.php');
+		require_once('classes/class-cahnrswp-people-display.php');
+		require_once('classes/class-cahnrswp-people-display-general.php');
 		$People_Displays = new CAHNRSWP_People_Displays_General;	
 		$People_Displays->init();
 		
-		require_once('classes/class-cahnrswp-people-displays-profiles.php');
+		require_once('classes/class-cahnrswp-people-display-profiles.php');
 		$People_Profiles = new CAHNRSWP_People_Displays_Profiles;	
 		$People_Profiles->init();
 		
-		require_once('classes/class-cahnrswp-people-displays-shortcode.php');
-		require_once('classes/class-cahnrswp-people-displays-shortcode-display.php');
+		require_once('classes/class-cahnrswp-people-display-shortcode.php');
+		require_once('classes/class-cahnrswp-people-display-shortcode-display.php');
 		$Shortcode_Display = new CAHNRSWP_People_Displays_Shorcode_Display;	
 		$Shortcode_Display->init();
 		

@@ -4,6 +4,7 @@
 	display: table;
 	width: 100%;
 	}
+	
 .wsuprofileTableRow {
 	display: table-row;
 	}
@@ -21,8 +22,6 @@
 	
 .wsuprofileTableHeading {
 	display: table-header-group;
-
-	
 	}	
 .wsuprofileTableBody {
 	display: table-row-group;
@@ -38,7 +37,8 @@ border-top: 1px solid #ddd;
 }
 
 .wsuprofileTableHead {
-	background-color: rgba(215,218,219,1);
+/*	background-color: rgba(215,218,219,1); */
+background-color: #ccc;
 	font-weight:700;
 	color: #fff;
 	}	
