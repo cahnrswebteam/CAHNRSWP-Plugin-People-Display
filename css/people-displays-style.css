@@ -1,0 +1,47 @@
+/* CSS Document */
+
+.wsuprofileTable {
+	display: table;
+	width: 100%;
+	}
+.wsuprofileTableRow {
+	display: table-row;
+	}
+	
+.wsuprofileTableRow:nth-child(old){
+	background-color: #999;
+}
+.wsuprofileTableRow:nth-child(even){
+	background-color: #fff;
+}
+.wsuprofileTableRow:hover, .wsuprofileTableRow:nth-child(even):hover {	
+	background-color: #ccc;
+}
+
+	
+.wsuprofileTableHeading {
+	display: table-header-group;
+
+	
+	}	
+.wsuprofileTableBody {
+	display: table-row-group;
+	}
+	
+.wsuprofileTableCell, .wsuprofileTableHead {
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: top;
+	}	
+.wsuprofileTableCell {
+border-top: 1px solid #ddd;
+}
+
+.wsuprofileTableHead {
+	background-color: rgba(215,218,219,1);
+	font-weight:700;
+	color: #fff;
+	}	
+.wsuprofileTableFoot {
+	display: table-footer-group;
+	}	
