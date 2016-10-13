@@ -13,50 +13,52 @@ class CAHNRSWP_People_Displays_Profiles {
 	
 	 public function init() {
 	 
-	 	$profiles_list = $this->get_profiles();	
+//	 	$profiles_list = $this->get_profiles( $atts );	
 
 	 }
 	 
 	
 	
 	
-	public function get_profiles() {
+	public function get_profiles( $atts ) {
 		/* parameters 
 			tag - 
 			count - 
 			classification -
 			university_organization_slug -
-			
-		
 		*/
+		
+		  $args = shortcode_atts( array(
+		  		'display'  => 'display',
+		  		'classification' => 'classification')
+				,  $atts ) ;
+				
+		
+	//	var_dump($args);	
+		
+		$sc_classificaton = "faculty";
+
+	//$sc_classification = $args['classification'];
+	
 		
 //		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[tag]=department-of-human-development&filter[per_page]=60";
 
-		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[wsuwp_university_location]=mount-vernon&filter[per_page]=100";
+//		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=faculty&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+		
+		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=' . $sc_classificaton . '&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+//		var_dump ($url);	
+		
 		$json = file_get_contents($url);
 	
-		$data = json_decode($json, TRUE);
+//		$data = json_decode($json, TRUE);
+
+		$data = json_decode($json);
 
 	
-	
-		$sortArray = array();
-		
-	//	var_dump($data);
-	/*	
-		foreach($data as $item ) {
-		  foreach($item as $key=>$value){
-				if(!isset($sortArray[$key])){
-					$sortArray[$key] = $array();
-					}
-				$sortArray[$key][] = $value;
-				}
- 
-		}
-	*/	
-	$orderby = 'last_name'; 
-	
-//	array_multisort($sortArray[$orderby],SORT_ASC,$data); 
-		
+	//	$sortArray = array();	
+
+	usort( $data, array( $this, 'sort_by_last_name' ) );
+			
 		
 	//	$one_profile = '';
 		
@@ -65,10 +67,27 @@ class CAHNRSWP_People_Displays_Profiles {
 			foreach ($data as $person) {
 				
 			$one_profile = new CAHNRSWP_People_Displays_Profiles();
-//				$one_profile = $this->set_profile_fields( $person );
 
-				
-			    $one_profile->profile_last_name = $person['last_name'];
+				$one_profile->profile_Ct = $person->type;
+				$one_profile->profile_title = $person->title;
+				$one_profile->profile_ID = $person->id;
+				$one_profile->profile_last_name = $person->last_name;
+				$one_profile->profile_first_name = $person->first_name;
+				$one_profile->profile_office = $person->office;
+				$one_profile->profile_office_alt = $person->office_alt;
+				$one_profile->profile_phone = $person->phone;
+				$one_profile->profile_email = $person->email;
+				$one_profile->profile_website = $person->website;
+				$one_profile->profile_position_title = $person->position_title;
+				$one_profile->profile_working_title = $person->working_titles;			
+				$one_profile->profile_degree = $person->degrees;
+				$one_profile->profile_college_bio = $person->bio_college;
+				$one_profile->profile_dept_bio = $person->bio_department;
+				$one_profile->profile_photo = 	$person->profile_photo;
+				$one_profile->profile_slug = $person->slug;
+				$one_profile->profile_content = $person->content;		
+
+/*			    $one_profile->profile_last_name = $person['last_name'];
 				$one_profile->profile_first_name = $person['first_name'];
 				$one_profile->profile_office = $person['office'];
 				$one_profile->profile_office_alt = $person['office_alt'];
@@ -83,12 +102,9 @@ class CAHNRSWP_People_Displays_Profiles {
 				$one_profile->profile_photo = 	$person['profile_photo'];
 				$one_profile->profile_slug = $person['slug'];
 				$one_profile->profile_content = $person['content'];
-					
+*/					
 				$profiles[] = $one_profile;
-				
-				
-//				$json_profiles_list = $person['last_name'] . ',' . $person['first_name'] . $person['position_title'];  				
-				
+								
 				
 				} // foreach
 			
@@ -96,7 +112,13 @@ class CAHNRSWP_People_Displays_Profiles {
 				return $profiles;
 
 	 } //get_profiles
-	 
+	
+	
+	public function sort_by_last_name( $a , $b ) {
+		
+			return strcasecmp( $a->last_name, $b->last_name);
+		
+		} //end sort_by_last_name
 
 /*	 
 	 function set_profile_fields ( $person ) {

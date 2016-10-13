@@ -5,13 +5,14 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	protected $shortcode_name = 'people_list';	
 	
  	protected $default_atts = array(
-		'display' => 'list',	
+		'display' => 'list',
+		'classification' => 'faculty',	
 	 );	
 	 
    public function display_content( $atts, $content ) {
  
 	$one_profile = new CAHNRSWP_People_Displays_Profiles();
-	$display_profiles = $one_profile->get_profiles();
+	$display_profiles = $one_profile->get_profiles( $atts );
 	
 			
 	   
@@ -44,12 +45,19 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   
 	   
 	   }// display_contents
-	 	
+	
+	
+	
+	
+		 	
+
+
 
 	 protected function get_list_html( $display_profiles , $atts , $content )
 		 {
 		 
-		  $results = '';
+	   $results = '';
+		$results .= $this->search_form();
 		 		   
 		$results .= '<div class="wsuprofileTable">';
 	    $results .= '<div class="wsuprofileTableRow">';
@@ -77,6 +85,24 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				 
 	 } // end get_list_html 
 		 
+	public function search_form (){
+		
+		$html = '';
+		
+		$html .= '<div class="search-toolbar">';
+		$html .= 'Search: <input id="txtSearchPage" type="search" placeholder="Search" /><br/>';
+//        $html .= '<input id="txtSearchPagePlugin" type="search" placeholder="Search list" />';
+		$html .= '</div>';
+		
+		return $html;
+		
+		} //search_form
+
+
+	 
+	 
+		 
+
 
 	 
 } //end CAHNRSWP_People_Displays_Shortcode_Displays	 

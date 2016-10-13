@@ -1,13 +1,51 @@
 /* CSS Document */
 
+/* Up and Down Arrows */
+.sortable th.descend:after{
+	content: "\25B2";
+	}
+.sortable th.ascend:after{
+	content: "\25BC";
+	}
+
+.search-toolbar {
+	padding: 0.5rem 0;
+	text-align:right;	
+	
+	}
+
+.close {
+	text-align:right;
+		
+	}
+	
+.cahnrswp-people-single-profile {
+	background-color: #FFF;
+	border:#666 1px solid;
+	padding: 2rem;
+	position:absolute;
+	max-height: 70%;
+	width: 80%;
+	left: 5%;
+	top: 5%;
+	display: none;
+	z-index: 20;
+	}
+.cahnrswp-people-single-profile img {
+	padding-right: 2rem;
+	}
+	
 .wsuprofileTable {
 	display: table;
 	width: 100%;
+	z-index: 1;
 	}
 	
-.wsuprofileTableRow {
+.wsuprofileTableRow,.wsuprofileTableRowData  {
 	display: table-row;
 	}
+	
+	
 	
 .wsuprofileTableRow:nth-child(old){
 	background-color: #999;
@@ -40,7 +78,7 @@ border-top: 1px solid #ddd;
 /*	background-color: rgba(215,218,219,1); */
 background-color: #ccc;
 	font-weight:700;
-	color: #fff;
+/*	color: #fff; */
 	}	
 .wsuprofileTableFoot {
 	display: table-footer-group;

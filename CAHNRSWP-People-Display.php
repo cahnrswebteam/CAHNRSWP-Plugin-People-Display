@@ -25,7 +25,7 @@ class CAHNRSWP_People_Displays_Library {
 	
 	
 	public function __construct() {
-		
+
 		require_once('classes/class-cahnrswp-people-display.php');
 		require_once('classes/class-cahnrswp-people-display-general.php');
 		$People_Displays = new CAHNRSWP_People_Displays_General;	
@@ -45,6 +45,8 @@ class CAHNRSWP_People_Displays_Library {
 		
 			
 		} //end __construct
+		
+		
 
 
 } //end CAHNRSWP_People_Displays_Library
