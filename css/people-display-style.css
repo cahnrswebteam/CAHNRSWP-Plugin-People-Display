@@ -42,9 +42,12 @@
 	}
 	
 .wsuprofileTableRowHeader,.wsuprofileTableRowData  {
-	display: table-row;
+	 display: table-row;
 	}
 	
+.wsuprofileTableRowData {
+	display: none;
+	}	
 	
 	
 .wsuprofileTableRowData:nth-child(old){
@@ -83,3 +86,44 @@ background-color: #ccc;
 .wsuprofileTableFoot {
 	display: table-footer-group;
 	}	
+
+
+.row-display {
+	display:table-row; 
+
+	}
+.pagination {
+	text-align: right;
+	}
+.pagination a {
+	color: #999;
+	}
+.paging_button {
+    margin: 0 5px;
+	position: relative;
+}
+
+.paging_button.next:after, .paging_button.previous:before {
+	text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    content: "";
+    text-shadow: .1em .1em #666;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: -14px;
+    margin: auto;
+    height: 14px;
+    width: 14px;
+    line-height: 1;
+	}
+
+.paging_button.next:after {
+    text-align: right;
+    content: "";
+    left: auto;
+}
+

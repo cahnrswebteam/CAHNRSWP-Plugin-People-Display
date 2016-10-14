@@ -3,6 +3,53 @@ jQuery(document).ready(function($){
 	
 	var default_title = document.title;
 	
+	/* used .slice to display table rows */
+	
+	var row_Count = jQuery( ".wsuprofileTableRowData").length;
+	var per_page = jQuery(".wsuprofileTableRowHeader").data( 'id' );
+	var number_of_pages = Math.ceil( row_Count/per_page );
+//	alert( number_of_pages );
+	var start_count = 0;
+	
+	var end_count = per_page;
+	
+	var limit = (per_page * number_of_pages);
+
+	jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
+	
+	jQuery( "a.paging_button.next").on( 'click' , function() {
+		
+		start_count = start_count + per_page;
+		end_count = end_count + per_page;
+		
+		
+		if ( end_count > limit ){ 
+			start_count = limit - per_page;
+			end_count = limit;
+		  }	
+
+		jQuery( ".wsuprofileTableRowData").removeClass("row-display");
+		jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
+		
+		
+		});
+		
+	jQuery( "a.paging_button.previous").on( 'click' , function() {
+		
+			start_count = start_count - per_page;
+			end_count = end_count - per_page;
+			
+			if (start_count < 0) { 
+					start_count = 0;
+					end_count = per_page;
+					}
+			
+			jQuery( ".wsuprofileTableRowData").removeClass("row-display");
+			jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
+		
+		});
+	
+	
 // Show a full profile. - Phil's code
 
 	jQuery( '.wsuprofileTable' ).on( 'click', '.profile-link', function(e) {
@@ -39,45 +86,7 @@ jQuery(document).ready(function($){
 					}
 		});
 	
-	/******************** pagination ***********************/
-//	https://premium.wpmudev.org/blog/load-posts-ajax/?nhp=b&utm_expid=3606929-87.FQUx5sKvRhKbhK_8_C59WQ.1&utm_referrer=https%3A%2F%2Fwww.google.com%2F
 	
-
-	function find_page_number( element ) {
-		element.find('span').remove();
-		return parseInt( element.html() );
-	}
-
-	jQuery('.nav-links a' ).on( 'click', function( event ) {
-		event.preventDefault();
-		
-		page = find_page_number( $(this).clone() );
-		
-		$.ajax({
-			url: ajaxpagination.ajaxurl,
-			type: 'post',
-			data: {
-				action: 'ajax_pagination',				
-			},
-			success: function( html ) {
-				$('#main').find( 'article' ).remove();
-				$('#main nav').remove();
-				$('#main').append( html );
-//				alert( result );
-			}
-		})
-	})
-	
-/***** http://stackoverflow.com/questions/13852782/how-can-i-do-pagination-without-reaload-page-in-wordpress ****/
-/*
-	$('.page').click(function(e) {
-		e.preventDefault();
-		$.ajax({url: $(this).prop('href'), success: function(d) {
-			var page = $(d).find('.pagination').html();
-			$('.pagination').html(page);
-		}});
-	});
-*/
 	
 	/****sort by column ************/
 	var headerdiv = $("div.wsuprofileTableRowHeader");

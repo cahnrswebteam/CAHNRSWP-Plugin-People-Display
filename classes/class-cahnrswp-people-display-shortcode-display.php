@@ -6,7 +6,11 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	
  	protected $default_atts = array(
 		'display' => 'list',
-		'classification' => 'faculty',	
+		'organization' => 'cahnrs',
+		'classification' => '',
+		'location' => '',
+		'tag' => '',
+		'count' => '10'	
 	 );	
 	 
    public function display_content( $atts, $content ) {
@@ -15,13 +19,13 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	$display_profiles = $one_profile->get_profiles( $atts );
 	
 	$number_of_profiles = count($display_profiles);
-	
-	$profiles_per_page = 10;
 		
 	   
 	   $html = '';
 	   
 	  extract($atts);
+	   
+	//   var_dump($count);
 	   
 	   switch( $display ){
 		   
@@ -58,12 +62,15 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 
 	 protected function get_list_html( $display_profiles , $atts , $content )
 		 {
+		
+		extract($atts);
+		//var_dump($count);
 		 
 	   $results = '';
 		$results .= $this->search_form();
 		 		   
 		$results .= '<div class="wsuprofileTable">';
-	    $results .= '<div class="wsuprofileTableRowHeader">';
+	    $results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
 	   	$results .= '<div class="wsuprofileTableHead"></div>';	
 	   	$results .= '<div class="wsuprofileTableHead asc" id="name">Name</div>';		
 	   	$results .= '<div class="wsuprofileTableHead asc" id="title">Title</div>';		
@@ -82,7 +89,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				
 		  } // end foreach
 
-			 $results .= '</div>';			  
+			 $results .= '</div>';	
+			 
+			 $results .= $this->pagination();		  
+			 
 		  return $results;
 		 
 				 
@@ -103,6 +113,14 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	
 	public function pagination() {
 		
+		$html = '';
+		
+		$html .= '<div class="pagination">';
+		$html .= '<a class="paging_button previous"> < Previous</a>';
+		$html .= '<a class="paging_button next">Next > </a>';
+		$html .= '</div>';
+		
+		return $html;
 		
 		}
 

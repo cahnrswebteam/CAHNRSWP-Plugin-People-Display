@@ -27,22 +27,33 @@ class CAHNRSWP_People_Displays_Profiles {
 			classification -
 			university_organization_slug -
 		*/
-		
+	/*	
 		  $args = shortcode_atts( array(
 		  		'display'  => 'display',
 		  		'classification' => 'classification')
 				,  $atts ) ;
 				
+	*/	
+	$organization_code = '';
+	$classificaton_code = '';
+	$location_code = '';
+	$tag_code = '';
 		
-	//	var_dump($args);	
+	   extract( $atts );	
+	   
+	//	var_dump($classification);	
 		
-		$sc_classificaton = "faculty";
+	//	$sc_classificaton = "faculty";
+	
+		if ( $organization ) { $organization_code = '&wsuwp_university_org=' . $organization; }
 		
-		$classificaton_code = 'filter[classification]=' . $sc_classificaton;
+		if ( $classification) {$classificaton_code = 'filter[classification]=' . $classification;}
 		
-		$classificaton_code ='';
-
-	//$sc_classification = $args['classification'];
+		if ( $location ) {$location_code = '&filter[wsuwp_university_location]=' . $location;}
+		
+		if ( $tag ) {$tag_code = '&filter[tag]=' . $tag; }
+		
+		//department-of-human-development		
 	
 		
 //		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[tag]=department-of-human-development&filter[per_page]=60";
@@ -51,9 +62,9 @@ class CAHNRSWP_People_Displays_Profiles {
 		
 //		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=' . $sc_classificaton . '&filter[wsuwp_university_location]=mount-vernon&per_page=100";
 		
-		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&" . $classificaton_code . "&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile" . $organization_code ."&filter[orderby]=title&filter[order]=ASC&" . $classificaton_code . '"' . $location_code . '"'. $tag_code ."&per_page=100";
 
-//		var_dump ($url);	
+	//	var_dump ($url);	
 		
 		$json = file_get_contents($url);
 	
