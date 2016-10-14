@@ -1,0 +1,31 @@
+'<div class="wsuprofileTableRowHeader"><div class="wsuprofileTableHead"></div><div class="wsuprofileTableHead" id="tbname">Name</div><div class="wsuprofileTableHead" id="tbtitle">Title</div><div class="wsuprofileTableHead" id="tbdeparment">Department</div><div class="wsuprofileTableHead" id="tbwork-group">Work Group</div></div>'	
+
+
+jQuery('#tbname').on('click', function() {
+	
+		var alphabeticalOrderDivs = $divs.sort(function (a, b) {
+
+//			return $(a).find(".wsuprofileTableCell.name a").text().toLowerCase().localeCompare($(b).find(".wsuprofileTableCell.name a").text().toLowerCase());
+			return (asc == 
+					($(a).find(".wsuprofileTableCell.name a").text().toLowerCase().localeCompare($(b).find(".wsuprofileTableCell.name a").text().toLowerCase()))) ? 1 : -1;
+		
+			});
+			
+http://stackoverflow.com/questions/13852782/how-can-i-do-pagination-without-reaload-page-in-wordpress
+
+			
+$('.page').click(function(e) {
+    e.preventDefault();
+    $.ajax({url: $(this).prop('href'), success: function(d) {
+        var page = $(d).find('.pagination').html();
+        $('.pagination').html(page);
+    }});
+});			
+
+Information needed for pagination:
+
+1. Total Number of profiles
+2. Default number of profiles to display (Use for calculating per page
+	Total / number per page (MOD to round up or down ???)
+3. ajax query ??
+4. 

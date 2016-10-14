@@ -13,6 +13,10 @@ class CAHNRSWP_People_Displays_General extends CAHNRSWP_People_Displays {
 		
 		add_action( 'wp_ajax_single_profile_display', array( 'CAHNRSWP_People_Displays_General', 'single_profile_display' ) );
 		add_action( 'wp_ajax_nopriv_single_profile_display', array( 'CAHNRSWP_People_Displays_General', 'single_profile_display' ) );
+		
+		add_action( 'wp_ajax_nopriv_ajax_pagination', 'my_ajax_pagination' );
+		add_action( 'wp_ajax_ajax_pagination', 'my_ajax_pagination' );
+
 								
 		} //end init
 
@@ -20,7 +24,19 @@ class CAHNRSWP_People_Displays_General extends CAHNRSWP_People_Displays {
 			
 		 wp_enqueue_script( 'people-displays-scripts', plugins_url( '/js/displays.js', dirname(__FILE__) ), array( 'jquery' ) );
 		 wp_localize_script( 'people-displays-scripts', 'profiles', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		 
+		 wp_enqueue_script( 'ajax-pagination',  plugins_url( '/js/ajax-pagination.js', dirname(__FILE__) ), array( 'jquery' ), '1.0', true );
+		 wp_localize_script( 'ajax-pagination', 'ajaxpagination', array('ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+
 		}	
+		
+	public function my_ajax_pagination() {
+    		echo get_bloginfo( 'title' );
+
+		   	wp_die();
+	
+	}
+	
 	
 	public function single_profile_display(){
 	

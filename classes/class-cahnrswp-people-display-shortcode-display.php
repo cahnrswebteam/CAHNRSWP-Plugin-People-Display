@@ -14,7 +14,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	$one_profile = new CAHNRSWP_People_Displays_Profiles();
 	$display_profiles = $one_profile->get_profiles( $atts );
 	
-			
+	$number_of_profiles = count($display_profiles);
+	
+	$profiles_per_page = 10;
+		
 	   
 	   $html = '';
 	   
@@ -60,12 +63,12 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$results .= $this->search_form();
 		 		   
 		$results .= '<div class="wsuprofileTable">';
-	    $results .= '<div class="wsuprofileTableRow">';
+	    $results .= '<div class="wsuprofileTableRowHeader">';
 	   	$results .= '<div class="wsuprofileTableHead"></div>';	
-	   	$results .= '<div class="wsuprofileTableHead">Name</div>';		
-	   	$results .= '<div class="wsuprofileTableHead">Title</div>';		
-	   	$results .= '<div class="wsuprofileTableHead">Department</div>';		
-	   	$results .= '<div class="wsuprofileTableHead">Work Group</div>';	
+	   	$results .= '<div class="wsuprofileTableHead asc" id="name">Name</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc" id="title">Title</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc" id="deparment">Department</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc" id="work-group">Work Group</div>';	
 		$results .= '</div>';							
 		  			  
 	     
@@ -97,7 +100,11 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		return $html;
 		
 		} //search_form
-
+	
+	public function pagination() {
+		
+		
+		}
 
 	 
 	 

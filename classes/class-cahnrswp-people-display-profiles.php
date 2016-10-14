@@ -37,6 +37,10 @@ class CAHNRSWP_People_Displays_Profiles {
 	//	var_dump($args);	
 		
 		$sc_classificaton = "faculty";
+		
+		$classificaton_code = 'filter[classification]=' . $sc_classificaton;
+		
+		$classificaton_code ='';
 
 	//$sc_classification = $args['classification'];
 	
@@ -45,7 +49,10 @@ class CAHNRSWP_People_Displays_Profiles {
 
 //		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=faculty&filter[wsuwp_university_location]=mount-vernon&per_page=100";
 		
-		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=' . $sc_classificaton . '&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+//		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&filter[classification]=' . $sc_classificaton . '&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+		
+		$url = "https://people.wsu.edu/wp-json/wp/v2/people/?type=wsuwp_people_profile&filter[orderby]=title&filter[order]=ASC&" . $classificaton_code . "&filter[wsuwp_university_location]=mount-vernon&per_page=100";
+
 //		var_dump ($url);	
 		
 		$json = file_get_contents($url);

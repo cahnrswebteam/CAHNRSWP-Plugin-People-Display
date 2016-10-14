@@ -46,6 +46,8 @@ abstract class CAHNRSWP_People_Displays {
 	
 	public $profile_content;
 	
+	public $profile_count;
+	
 	
 	
 	
