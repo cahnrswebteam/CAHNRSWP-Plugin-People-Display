@@ -18,7 +18,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	$one_profile = new CAHNRSWP_People_Displays_Profiles();
 	$display_profiles = $one_profile->get_profiles( $atts );
 	
-	$number_of_profiles = count($display_profiles);
+	
 		
 	   
 	   $html = '';
@@ -65,6 +65,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		
 		extract($atts);
 		//var_dump($count);
+		
+		$number_of_profiles = count($display_profiles);
 		 
 	   $results = '';
 		$results .= $this->search_form();
@@ -78,20 +80,27 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   	$results .= '<div class="wsuprofileTableHead asc" id="work-group">Work Group</div>';	
 		$results .= '</div>';							
 		  			  
-	     
+		 $i = 0;
+		 	     
 		  foreach ($display_profiles as $profile ) {					
 				
+				$class = ( $i < $count ) ? 'row-display' : '';
+						
 				ob_start();
+				
+			//		'<div class="wsuprofileTableRowData">';
 				
 				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-list-display.php';
 				
 				$results .= ob_get_clean();
 				
+				$i++;
+				
 		  } // end foreach
 
 			 $results .= '</div>';	
 			 
-			 $results .= $this->pagination();		  
+			 $results .= $this->pagination( $count,  $number_of_profiles );		  
 			 
 		  return $results;
 		 
@@ -104,20 +113,45 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		
 		$html .= '<div class="search-toolbar">';
 		$html .= 'Search: <input id="txtSearchPage" type="search" placeholder="Search" /><br/>';
-//        $html .= '<input id="txtSearchPagePlugin" type="search" placeholder="Search list" />';
 		$html .= '</div>';
 		
 		return $html;
 		
 		} //search_form
-	
-	public function pagination() {
 		
+		
+	
+	public function pagination( $count, $number_of_profiles ) {
+		
+		$inc = $count;
+	//	$number_of_profiles = count($display_profiles);
+		
+		//$page_nav = $number_of_profiles;
+		$nav_html = '';
+		
+		$nav_html = '<nav data-inc="' . $inc . '">';
+		$nav_html .= '<a class="previous disabled">Previous</a>';
+		
+		$nav_c = $number_of_profiles;
+		$nav_i = 1;
+		while( $nav_c > 0 ) {
+			
+			$active = ( $nav_i == 1 ) ? 'class="active"' : '';
+			
+			$nav_html .= '<a href="#"'. $active . '>' . $nav_i . '</a>';
+			$nav_c = $nav_c - $inc;
+			$nav_i++; 	
+			
+			} //end while
+			$nav_html .= '<a class="next">Next</a>';
+			$nav_html .= '</nav>';
+
 		$html = '';
 		
 		$html .= '<div class="pagination">';
-		$html .= '<a class="paging_button previous"> < Previous</a>';
-		$html .= '<a class="paging_button next">Next > </a>';
+	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
+		$html .= $nav_html;
+	//	$html .= '<a class="paging_button next">Next</a>';
 		$html .= '</div>';
 		
 		return $html;

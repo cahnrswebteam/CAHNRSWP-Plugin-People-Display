@@ -3,12 +3,54 @@ jQuery(document).ready(function($){
 	
 	var default_title = document.title;
 	
-	/* used .slice to display table rows */
+	/*** pagination by Danial method *****/
 	
+	jQuery('nav a').click( function(){
+		
+		jQuery('nav a').removeClass('active');
+    	change_set_by_a( jQuery( this ) );
+	
+	});
+	
+	jQuery('a.next').on( 'click' , function( ) {
+			
+		});
+		
+	jQuery('nav a.previous').click( function() {
+		
+		});
+	
+
+	var change_set_by_a = function( ic ){
+		
+		ic.addClass('active');
+		var items = jQuery('.wsuprofileTableRowData');
+		var inc = ic.closest('nav').data('inc');
+		var index = ic.index();
+		var start = index * inc;
+		var end = start + inc;
+				
+		var i = 0;
+		items.each( function() {
+			if (( i >= start ) && ( i <= end ) ) {
+				
+				jQuery( this ).addClass('row-display');
+				
+				} else {
+					
+				jQuery( this ).removeClass('row-display');
+				} // end if 
+	
+				i++;
+			})	
+		
+	} //end change_set_by_a 
+	
+	/* used .slice to display table rows for pagination */
+/*	
 	var row_Count = jQuery( ".wsuprofileTableRowData").length;
 	var per_page = jQuery(".wsuprofileTableRowHeader").data( 'id' );
 	var number_of_pages = Math.ceil( row_Count/per_page );
-//	alert( number_of_pages );
 	var start_count = 0;
 	
 	var end_count = per_page;
@@ -18,6 +60,8 @@ jQuery(document).ready(function($){
 	jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
 	
 	jQuery( "a.paging_button.next").on( 'click' , function() {
+		jQuery("a.paging_button").removeClass("disabled");
+		
 		
 		start_count = start_count + per_page;
 		end_count = end_count + per_page;
@@ -26,7 +70,9 @@ jQuery(document).ready(function($){
 		if ( end_count > limit ){ 
 			start_count = limit - per_page;
 			end_count = limit;
+	       jQuery("a.paging_button.next").addClass("disabled");			
 		  }	
+
 
 		jQuery( ".wsuprofileTableRowData").removeClass("row-display");
 		jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
@@ -35,20 +81,23 @@ jQuery(document).ready(function($){
 		});
 		
 	jQuery( "a.paging_button.previous").on( 'click' , function() {
+		jQuery("a.paging_button").removeClass("disabled");
 		
+			
 			start_count = start_count - per_page;
 			end_count = end_count - per_page;
 			
 			if (start_count < 0) { 
 					start_count = 0;
 					end_count = per_page;
+					jQuery("a.paging_button.previous").addClass("disabled");
 					}
 			
 			jQuery( ".wsuprofileTableRowData").removeClass("row-display");
 			jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
 		
 		});
-	
+*/	
 	
 // Show a full profile. - Phil's code
 

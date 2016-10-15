@@ -77,8 +77,11 @@ abstract class CAHNRSWP_People_Displays {
 		
 		
 		public function register_styles_admin() {
-		 	
-			 wp_register_style( 'people-displays-style',  plugins_url( 'css/people-display-style.css', __FILE__ ) );
+				
+//			 wp_register_style( 'people-displays-style',  plugins_url( 'css/people-display-style.css', __FILE__ ) );
+			 
+			 wp_register_style( 'people-displays-style',  plugins_url( '/css/people-display-style.css', dirname(__FILE__) ) );
+		 
 	         wp_enqueue_style('people-displays-style');
 			 
 		
@@ -86,7 +89,8 @@ abstract class CAHNRSWP_People_Displays {
 		
 		public function register_styles() {
 	 	
-			 wp_register_style( 'people-displays-style',  plugins_url( '/CAHNRSWP-Plugin-People-display/css/people-display-style.css') );
+			 wp_register_style( 'people-displays-style',  plugins_url( '/css/people-display-style.css', dirname(__FILE__) ) );
+	//		 wp_register_style( 'people-displays-style',  plugins_url( '/CAHNRSWP-Plugin-People-display/css/people-display-style.css') );
 	         wp_enqueue_style('people-displays-style');
 			
 		

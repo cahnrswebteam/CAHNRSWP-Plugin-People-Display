@@ -1,10 +1,13 @@
 /* CSS Document */
 
 /* Up and Down Arrows */
-.sortable th.descend:after{
+/* ascending */
+.wsuprofileTableHead.asc:after{
 	content: "\25B2";
 	}
-.sortable th.ascend:after{
+	
+/* descending */	
+.wsuprofileTableHead.asc:after{
 	content: "\25BC";
 	}
 
@@ -47,15 +50,18 @@
 	
 .wsuprofileTableRowData {
 	display: none;
+	
 	}	
 	
 	
 .wsuprofileTableRowData:nth-child(old){
 	background-color: #999;
 }
+
 .wsuprofileTableRowData:nth-child(even){
 	background-color: #fff;
 }
+
 .wsuprofileTableRowData:hover, .wsuprofileTableRowData:nth-child(even):hover {	
 	background-color: #ccc;
 }
@@ -76,7 +82,16 @@
 .wsuprofileTableCell {
 border-top: 1px solid #ddd;
 }
-
+.name {
+	font-size: 1.25rem;
+	}
+.phone-email {
+	font-size: .75rem;
+	}
+.profile-link {
+	font-size: .65rem;
+	}
+		
 .wsuprofileTableHead {
 /*	background-color: rgba(215,218,219,1); */
 background-color: #ccc;
@@ -93,10 +108,10 @@ background-color: #ccc;
 
 	}
 .pagination {
-	text-align: right;
+	text-align: left;
 	}
 .pagination a {
-	color: #999;
+	color: #111;
 	}
 .paging_button {
     margin: 0 5px;
@@ -126,4 +141,14 @@ background-color: #ccc;
     content: "";
     left: auto;
 }
-
+.paging_button.previous.disabled, .paging_button.next.disabled {
+	color: #999;
+	}
+.active {
+	font-weight:Bold;
+	}	
+nav > a {
+	padding: 0 .25rem;
+	text-transform:uppercase;
+	
+	}	
