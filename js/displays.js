@@ -121,6 +121,7 @@ jQuery(document).ready(function($){
 				success: function( html ) {
 				 document.title = name + ' | ' + default_title;
 				$( '.cahnrswp-people-single-profile' ).html ( html );	
+				$( 'html,body').animate({scrollTop: 0}, 'fast');
 					
 				}
 		})

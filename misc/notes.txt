@@ -28,4 +28,4 @@ Information needed for pagination:
 2. Default number of profiles to display (Use for calculating per page
 	Total / number per page (MOD to round up or down ???)
 3. ajax query ??
-4. 
+4. List page numbers at bottom??

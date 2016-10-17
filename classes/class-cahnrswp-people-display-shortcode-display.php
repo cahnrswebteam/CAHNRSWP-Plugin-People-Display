@@ -7,6 +7,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
  	protected $default_atts = array(
 		'display' => 'list',
 		'organization' => 'cahnrs',
+		'directory_title'  => 'Directory Title',
 		'classification' => '',
 		'location' => '',
 		'tag' => '',
@@ -31,9 +32,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		   
 		   case 'list':
 	
-			//	$html = '<div class="wsuprofileTable">';
 				$html = $this->get_list_html( $display_profiles , $atts , $content );
-			//	$html = '</div>';
 				
 				break;
 				
@@ -69,15 +68,18 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$number_of_profiles = count($display_profiles);
 		 
 	   $results = '';
+	   $results .= '<div class="people-header">';
+	   $results .= $this->directory_heading( $directory_title );
 		$results .= $this->search_form();
+		$results .= '</div>';
 		 		   
 		$results .= '<div class="wsuprofileTable">';
 	    $results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
-	   	$results .= '<div class="wsuprofileTableHead"></div>';	
-	   	$results .= '<div class="wsuprofileTableHead asc" id="name">Name</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc" id="title">Title</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc" id="deparment">Department</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc" id="work-group">Work Group</div>';	
+	   	$results .= '<div class="wsuprofileTableHead photo"></div>';	
+	   	$results .= '<div class="wsuprofileTableHead asc desc" id="name">Name</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc desc" id="title">Title</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc desc" id="deparment">Department</div>';		
+	   	$results .= '<div class="wsuprofileTableHead asc desc" id="work-group">Workgroup</div>';	
 		$results .= '</div>';							
 		  			  
 		 $i = 0;
@@ -106,13 +108,26 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 
 				 
 	 } // end get_list_html 
+	 
+	 public function directory_heading ( $directory_title ){
+		
+		$html = '';
+		
+		
+		$html .= '<h3 class="dir-heading">'; 
+		$html .= $directory_title;
+		$html .= '</h3>';
+		
+		return $html;
+		
+		} //directory_heading
 		 
 	public function search_form (){
 		
 		$html = '';
 		
-		$html .= '<div class="search-toolbar">';
-		$html .= 'Search: <input id="txtSearchPage" type="search" placeholder="Search" /><br/>';
+		$html .= '<div class="search-toolbar">'; 
+		$html .= '<input id="txtSearchPage" type="search" placeholder="Search People" /><input type="button" id="b" value="S" />';
 		$html .= '</div>';
 		
 		return $html;
