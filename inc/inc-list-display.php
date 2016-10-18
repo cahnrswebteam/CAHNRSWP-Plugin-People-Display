@@ -1,5 +1,5 @@
 <div class="wsuprofileTableRowData <?php echo $class ?>"> 
-	<div class="wsuprofileTableCell photo"><a data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?>" href="#"><img src="<?php  echo $profile->profile_photo == '../../CAHNRSWP-Plugin-People-Display1012/inc' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $profile->profile_photo  ?>"  /></a></div>  	
+   	<div class="wsuprofileTableCell photo"><a data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?>" href="#"><img src="<?php  echo $profile->profile_photo == '' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $profile->profile_photo  ?>" /></a></div>  	
    	<div class="wsuprofileTableCell name"><a href="mailto:<?php echo $profile->profile_email;?>"><?php  echo $profile->profile_last_name;?>, <?php  echo $profile->profile_first_name;?></a>
     <div class="phone-email"><a href="mailto:<?php echo $profile->profile_email;?>"><?php echo $profile->profile_email;?></a><p />
    <p><?php echo $profile->profile_phone;?></p>

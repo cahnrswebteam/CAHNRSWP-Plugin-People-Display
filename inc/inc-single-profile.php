@@ -1,5 +1,6 @@
 <div class="close">X</div>
-<img src="<?php  echo $one_profile->profile_photo == '../../CAHNRSWP-Plugin-People-Display1012/inc' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $one_profile->profile_photo  ?>" align="left" />
+<img src="<?php  echo $one_profile->profile_photo == '' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $one_profile->profile_photo  ?>" align="left" />
+
 <?php  echo $one_profile->first_name; ?> <?php  echo $one_profile->last_name; ?><br />
 <?php  echo $one_profile->office; ?><br />
 <?php  echo $one_profile->office_alt; ?><br />
