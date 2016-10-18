@@ -66,6 +66,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		//var_dump($count);
 		
 		$number_of_profiles = count($display_profiles);
+		
+		//var_dump($number_of_profiles);
 		 
 	   $results = '';
 	   $results .= '<div class="people-header">';

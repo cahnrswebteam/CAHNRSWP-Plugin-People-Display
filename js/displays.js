@@ -3,22 +3,51 @@ jQuery(document).ready(function($){
 	
 	var default_title = document.title;
 	
-	/*** pagination by Danial method *****/
-	
-	jQuery('nav a').click( function(){
-		
-		jQuery('nav a').removeClass('active');
-    	change_set_by_a( jQuery( this ) );
-	
-	});
-	
-	jQuery('a.next').on( 'click' , function( ) {
-			
+
+	/*
+	jQuery('a.next').on( 'click' , function( event ) {
+		var	nc = jQuery('nav a.active' ).index();  
+			nc++;
+		var curr = jQuery('nav a.active');
+			curr.next('nav a').css({"background-color": "red"});
+	var nxt = curr.next('nav a');
+		change_set_by_a( jQuery( nxt ) );
+
 		});
 		
 	jQuery('nav a.previous').click( function() {
 		
-		});
+		});	
+	*/	
+	
+	/*** pagination by Danial method *****/
+	
+	jQuery('nav a').click( function(){
+			
+		var active_index = jQuery('nav a.active' ).index();
+		
+		var last_index = jQuery('.pagination > nav a').length - 1;
+		
+		alert(active_index);
+		
+		if ( ( jQuery( this ).hasClass('next') ) && ( active_index < last_index )  ) {
+				var nxt = jQuery('nav a.active').next();
+				jQuery('nav a').removeClass('active');	
+				change_set_by_a( nxt );		
+
+			} else if ( jQuery( this ).hasClass('previous') )  {
+				var prv = jQuery('nav a.active').prev();
+				jQuery('nav a').removeClass('active');	
+				change_set_by_a( prv );		
+
+			}	else {
+			//	alert('in else');
+			jQuery('nav a').removeClass('active');	
+    		change_set_by_a( jQuery( this ) );
+			}
+	});
+	
+
 	
 
 	var change_set_by_a = function( ic ){
@@ -27,8 +56,15 @@ jQuery(document).ready(function($){
 		var items = jQuery('.wsuprofileTableRowData');
 		var inc = ic.closest('nav').data('inc');
 		var index = ic.index();
+		
+		
+		index = index - 1;
+	//	alert(index);
+		
 		var start = index * inc;
-		var end = start + inc;
+		var end = (start + inc)-1;
+	//	alert(start);
+	//	alert(end);
 				
 		var i = 0;
 		items.each( function() {
