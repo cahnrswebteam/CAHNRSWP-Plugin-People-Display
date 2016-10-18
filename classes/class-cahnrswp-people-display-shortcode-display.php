@@ -10,6 +10,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		'directory_title'  => 'Directory Title',
 		'classification' => '',
 		'location' => '',
+		'university_category' => '',
 		'tag' => '',
 		'count' => '10'	
 	 );	
@@ -78,10 +79,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$results .= '<div class="wsuprofileTable">';
 	    $results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
 	   	$results .= '<div class="wsuprofileTableHead photo"></div>';	
-	   	$results .= '<div class="wsuprofileTableHead asc desc" id="name">Name</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc desc" id="title">Title</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc desc" id="deparment">Department</div>';		
-	   	$results .= '<div class="wsuprofileTableHead asc desc" id="work-group">Workgroup</div>';	
+	   	$results .= '<div class="wsuprofileTableHead both" id="name">Name</div>';		
+	   	$results .= '<div class="wsuprofileTableHead both" id="title">Title</div>';		
+	   	$results .= '<div class="wsuprofileTableHead both" id="deparment">Department</div>';		
+	   	$results .= '<div class="wsuprofileTableHead both" id="work-group">Workgroup</div>';	
 		$results .= '</div>';							
 		  			  
 		 $i = 0;

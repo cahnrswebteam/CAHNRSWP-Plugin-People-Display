@@ -2,6 +2,7 @@
 
 .people-header{
 	position: relative;
+    padding-bottom: .8rem;
 	}
 
 h3.dir-heading {
@@ -10,26 +11,31 @@ h3.dir-heading {
 	}
 /* Up and Down Arrows */
 /* ascending */
-.wsuprofileTableHead.desc:before{
-	content: "\25B2";
+.both:before, .wsuprofileTableHead.desc:before{
+	content: "\25B2"; 
+/*	content: "\25B4"; */
+	font-size: 8px;
 	position: absolute;
 	top: -3px;
 	display: inline-block;
 	/* left: 60%;*/
 	left:auto;
 	right: 10px;
+	
 
 	}
 /* descending */	
-.wsuprofileTableHead.asc:after{
-	content: "\25BC";
+.both:after, .wsuprofileTableHead.asc:after{
+	content: "\25BC"; 
+/*	content: "\25BE";  */
+	font-size: 8px;
 	position: absolute;
-	top: 7px;
+	top: 3px;
 	display: inline-block;
 	left:auto;
 	right: 10px;
 /*	left: 60%; */
-
+	
 	}
 
 .search-toolbar {
@@ -37,26 +43,47 @@ h3.dir-heading {
 	right: 0;
 	top: 50%;
 	display: inline-block;
-	margin-top: -15px;
+	margin-top: -16px;
 	
 	}
 	
 .search-toolbar input {
+	display: inline-block;
 	text-align: center;
-	width:130px;
-	height: 30px;
-	padding-right: 10px;
+	width:150px;
+	height: 28px;
+	padding-right: 20px;
 	border: 1px solid;
     border-radius: 5px;
 	}	
 
+	
+input::-webkit-input-placeholder {
+font-size: .9rem;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+font-size: .9rem; 
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+font-size: .9rem;
+}
+ 
+input:-ms-input-placeholder {  
+font-size: .9rem;
+}	
+	
 .search-toolbar input[type="button"] {
-    margin-left: -25px;
-    height: 33px;
-    width: 40px;
+	display: inline-block;
+ 	margin-left: -35px; */
+    height: 28px;
+	vertical-align: middle;
+    width: 35px;
 	color: #fff;
 	font-weight:700;
 	background-color:#999;
+	border: 1px solid #999;
 }	
 
 .close {
@@ -83,13 +110,15 @@ h3.dir-heading {
 	z-index: 20;
 	}
 	
-.cahnrswp-people-single-profile profile-content { 
-	
+.cahnrswp-people-single-profile .profile-content { 
+	padding-top: 2.5rem;
+
 }
 
 	
 .cahnrswp-people-single-profile img {
 	padding-right: 2rem;
+	
 	}
 	
 .wsuprofileTable {
@@ -100,7 +129,7 @@ h3.dir-heading {
 	
 .wsuprofileTableRowHeader,.wsuprofileTableRowData  {
 	 display: table-row;
-	 width: 20%;
+	/* width: 20%; */
 	
 	 
 	}
@@ -134,45 +163,55 @@ h3.dir-heading {
 	
 .wsuprofileTableCell, .wsuprofileTableHead {
 	display: table-cell;
-/*	padding: 3px 10px; */
-	vertical-align: top;
+
 /*	width: 20%; */
+
 	position: relative;
 	text-align:left;
 	border-bottom: 1px solid #ddd;
 	}	
-
+.wsuprofileTableHead { 
+	vertical-align: bottom;
+	text-transform: uppercase;
+}
 .wsuprofileTableCell {
-	/*border-top: 1px solid #ddd; */
-	
-	padding: 7px 0 0;
+	/*border-top: 1px solid #ddd; */	
+	padding-top: .7rem; 
+	vertical-align: top;
 }
 .wsuprofileTableCell.photo, .wsuprofileTableHead.photo {
 /*	max-width: 114px; */
-	width: 15%;
+	width: 12%;
+	padding: 7px 0 0;
 
 }
-
-.wsuprofileTableCell.name, .wsuprofileTableHead #name {
+.wsuprofileTableCell.photo img {
+	width: 90%;
+	 }
+	
+.wsuprofileTableCell.name {
 /*    min-width: 180px; */
-	width: 28%;
+	width: 22%;
+    padding-top: 1.25rem; 
 }
-#title, #deparment, #work-group { 
-	width: 20%;
+.wsuprofileTableHead #name { 
+	width: 22%;
 }
-/*
-.wsuprofileTableCell img {
-	display: block;
-	margin: auto;
-		}
-*/
+#title, #deparment { 
+	width: 17%;
+/*	 padding-top: 1.25rem; */
+}
+#work-group { 
+	width: 22%
+/*	 padding-top: 1.25rem; */
+}
 
 
 .name {
 	font-size: 1rem;
 	font-weight: 400;
     line-height: .1rem;
-    padding-top: 1rem;
+   
 
 	}
 
@@ -194,7 +233,7 @@ a.profile-link:after {
 	height: 0;
 	width: 0;
 	position: absolute;
-	border-left-color: #c60c30;
+	border-left-color: #981e32;
 	border-width: 5px;
 	margin-top: -5px;
 	margin-left: 2px;
@@ -218,13 +257,58 @@ a.profile-link:after {
 	text-align: left;
 	}
 .pagination a {
-	color: #111;
+	color: #717171;
+	}	
+.pagination a.active, a.next, a.previous  {
+	color: #981e32;
+	position: relative;
 	}
+	
+/*
+a.next:after, a.previous:before {
+	text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    content: "";
+    text-shadow: .1em .1em #666;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: -14px;
+    margin: auto;
+    height: 14px;
+    width: 14px;
+    line-height: 1;
+	}
+*/
+a.next:after, a.previous:before {
+	left: 100%;
+    top: 50%; 
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 5px;
+    position: absolute;
+  
+    border-width: 7px;
+    margin-top: -8.0px;
+    margin-left: 2px;
+}
+a.next:after {
+  border-left-color: #981e32;
+}
+a.previous:before { 
+    left: -30%;
+	border-right-color: #981e32;		
+}
+
 .paging_button {
     margin: 0 5px;
 	position: relative;
 }
-
+/*
 .paging_button.next:after, .paging_button.previous:before {
 	text-align: left;
     font-size: 14px;
@@ -251,6 +335,8 @@ a.profile-link:after {
 .paging_button.previous.disabled, .paging_button.next.disabled {
 	color: #999;
 	}
+*/	
+	
 .active {
 	font-weight:Bold;
 	}	
@@ -267,43 +353,41 @@ nav > a {
 	}
 }
 @media screen and (max-width:791px) {
-/*
-	.table .people-actions-inner {
-		float: none; 
-		width: auto;
-	}
-*/
+
 }
 
 @media only screen and (max-width:693px) {
-/*	
-	.wsuwp-person-container {
-		padding-bottom: 62%;
-		width: 33.3%;
-	}
-*/	
-	.wsuprofileTableRowHeader {
+
+.wsuprofileTable {
+	padding-top: .5rem;
+	}	
+
+	
+.wsuprofileTableRowHeader {
 		display: none;
 	}
-/*	.wsuprofileTableRowData {
-		display: block;
-	}
-*/	
 .wsuprofileTableCell.name {
-		width: 55%;
+		width: 100%;
 		line-height: .1rem;
 		}
 	.wsuprofileTableCell.photo {
-		width: 45%;
+		width: 100%;
 		}
+	.wsuprofileTableCell.photo img {	
+		width: 40%;
+	}
+	
 	.wsuprofileTableRowData {
 		width: 100%;
 		}
 	.wsuprofileTableCell {
 		display: block;
-		border: none;
-		
+		border: none;	
+		width: 100%;
 		}	
+	.wsuprofileTableCell.photo {	
+		border-top: 1px solid #ddd;
+	}
 	h3.dir-heading {
 		display: none;
 		}
@@ -318,37 +402,34 @@ nav > a {
 	max-width: 70%;
 	}		
 	
-/*		
-	}
-	.photo {
-		float: left;
-		padding: 1rem 0.5rem 0.5rem 1rem;
-		width: 124px;
-	}
-	.photo img {
-		width: 124px;
-	}
-	.card {
-		overflow: hidden;
-		padding: 1rem 1rem 0.5rem 0.5rem;
-		text-overflow: ellipsis;
-		width: auto;
-	}
-	.about {
-		border-top: none;
-		clear: both;
-	}
-*/	
 }
 
 @media only screen and (max-width:480px) {
+.wsuprofileTableCell.name {
+		width: 100%;
+		line-height: .1rem;
+		}
+	.wsuprofileTableCell.photo {
+		width: 100%;
+		}
+	.wsuprofileTableCell.photo img {	
+		width: 100%;
+	}
+	
 	.wsuprofileTableRowData {
 		width: 100%;
 		}
 	.wsuprofileTableCell {
 		display: block;
-		border: none;
-		}		
+		border: none;	
+		width: 100%;
+		}	
+	.wsuprofileTableCell.photo {	
+		border-top: 1px solid #ddd;
+	}		
+
+
+				
 	h3.dir-heading {
 		display: none;
 		}

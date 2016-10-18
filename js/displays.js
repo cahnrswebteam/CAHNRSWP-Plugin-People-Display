@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 		
 		var last_index = jQuery('.pagination > nav a').length - 1;
 		
-		alert(active_index);
+	//	alert(active_index);
 		
 		if ( ( jQuery( this ).hasClass('next') ) && ( active_index < last_index )  ) {
 				var nxt = jQuery('nav a.active').next();
@@ -190,8 +190,12 @@ jQuery(document).ready(function($){
 		
 //	jQuery('#tbname').on('click', function() {
 	jQuery( jqidString,  function() {	
+		var frst = $( jqidString + '.wsuprofileTableHead').hasClass('both') ? 'asc' : 'desc';
+			$( jqidString + '.wsuprofileTableHead').addClass(frst);	
 		var o = $( jqidString + '.wsuprofileTableHead').hasClass('asc') ? 'desc' : 'asc';
-			$( jqidString + '.wsuprofileTableHead').removeClass( 'asc' ).removeClass( 'desc');
+			$( '.wsuprofileTableHead').removeClass('both');	
+			$( jqidString ).siblings().not('.photo').addClass('both').removeClass('asc').removeClass('desc');
+			$( jqidString + '.wsuprofileTableHead').removeClass( 'asc' ).removeClass( 'desc').removeClass('both');			
 			$( jqidString + '.wsuprofileTableHead' ).addClass(o);
 			
 		var alphabeticalOrderDivs = $divs.sort(function (a, b) {
