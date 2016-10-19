@@ -119,7 +119,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		
 	    $results = '';
 		$results .= '<div class="column-list-profiles">';
-		$results .= $this->pagination( $count,  $number_of_profiles );
+	//	$results .= $this->pagination( $count,  $number_of_profiles );
 		 		
 		$results .= '<div class="column-list-people-header">';
         $results .= $this->directory_heading( $directory_title );

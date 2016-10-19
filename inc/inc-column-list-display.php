@@ -1,4 +1,3 @@
-<!-- columen small list view -->
 <div class="column-list-profile <?php echo $class; ?>">
 	<div class="clphoto">
 		<img src="<?php  echo $profile->profile_photo == '' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $profile->profile_photo  ?>" align="left" />
