@@ -85,7 +85,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 	     
 		  foreach ($display_profiles as $profile ) {					
 				
-				$class = ( $i < $count ) ? 'display' : '';
+				$class = ( $i < $count ) ? '' : 'hidden';
 						
 				ob_start();
 								
@@ -136,7 +136,9 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 	     
 		  foreach ($display_profiles as $profile ) {					
 				
-				$class = ( $i < $count ) ? 'display' : '';
+			//	$class = ( $i < $count ) ? 'display' : '';
+			
+				$class = ( $i < $count ) ? '' : 'hidden';
 						
 				ob_start();
 								
@@ -191,7 +193,9 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 	     
 		  foreach ($display_profiles as $profile ) {					
 				
-				$class = ( $i < $count ) ? 'row-display' : '';
+		//		$class = ( $i < $count ) ? 'row-display' : '';
+		
+				$class = ( $i < $count ) ? '' : 'hidden';
 		
 						
 				ob_start();

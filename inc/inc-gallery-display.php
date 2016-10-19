@@ -8,7 +8,8 @@
 	        <?php  echo $profile->profile_position_title; ?>
         </li>
         <li class="gallery-link">
-			    <a data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?> href="#">View Full Profile</a>        
+          <a class="profile-link" data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?> href="#">View Full Profile</a>
+<!--			    <a data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?> href="#">View Full Profile</a>       -->
         </li>
    </ul>    
 </article>

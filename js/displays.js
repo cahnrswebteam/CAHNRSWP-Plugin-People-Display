@@ -54,28 +54,64 @@ jQuery(document).ready(function($){
 		
 		ic.addClass('active');
 		
+	
 		if ( jQuery('.column-list-profile').length ) { 
 				var items = jQuery('.column-list-profile');
 			//	alert('inside c l profile class');
-			} else {
+		} else if ( jQuery('article').length ) {
+				var items = jQuery('article');
+		} 
+		 
+		 if ( jQuery('.wsuprofileTableRowData').length) {
 				var items = jQuery('.wsuprofileTableRowData');	
-				}
-		
-		var inc = ic.closest('nav').data('inc');
-		
+			}
+							
+		var inc = ic.closest('nav').data('inc');	
 		var index = ic.index();
-		
-		
 		index = index - 1;
-	//	alert(index);
-		
 		var start = index * inc;
 		var end = (start + inc)-1;
-	//	alert(start);
-	//	alert(end);
 				
 		var i = 0;
-		if ( jQuery('.column-list-profile').length ) {
+		
+		
+		items.each( function() {
+			if (( i >= start ) && ( i <= end ) ) {
+				
+				jQuery( this ).removeClass('hidden');
+				
+				} else {
+					
+				jQuery( this ).addClass('hidden');
+				} // end if 
+	
+				i++;
+			}) 
+			
+			if ( jQuery('.column-list-profile').length ) { 
+				$( 'html,body').animate({scrollTop: 0}, 'fast');	
+			} //Scroll to top for column-list
+			
+/*			
+		if ( ( jQuery('article').length ) ) {
+		
+			items.each( function() {
+			if (( i >= start ) && ( i <= end ) ) {
+				
+				jQuery( this ).removeClass('hidden');
+				
+				} else {
+					
+				jQuery( this ).addClass('hidden');
+				} // end if 
+	
+				i++;
+			}) 
+			
+			} // gallery article
+				
+		
+		if ( ( jQuery('.column-list-profile').length ) ) {
 		
 			items.each( function() {
 			if (( i >= start ) && ( i <= end ) ) {
@@ -91,23 +127,26 @@ jQuery(document).ready(function($){
 			})	
 			
 			
-			} //if column-list-profile
+			} else {  //if column-list-profile
+			
 		
-		items.each( function() {
-			if (( i >= start ) && ( i <= end ) ) {
+			items.each( function() {
+				if (( i >= start ) && ( i <= end ) ) {
 				
-				jQuery( this ).addClass('row-display');
+					jQuery( this ).addClass('row-display');
 				
-				} else {
+					} else {
 					
-				jQuery( this ).removeClass('row-display');
-				} // end if 
+					jQuery( this ).removeClass('row-display');
+					} // end if 
 	
-				i++;
-			})	
+					i++;
+				})	
 			
-			
-		
+			} //end else
+	*/	
+	
+	
 	} //end change_set_by_a 
 	
 	/* used .slice to display table rows for pagination */
@@ -165,15 +204,26 @@ jQuery(document).ready(function($){
 	
 // Show a full profile. - Phil's code
 
-	jQuery( '.wsuprofileTable' ).on( 'click', '.profile-link', function(e) {
+//	jQuery( '.wsuprofileTable' ).on( 'click', '.profile-link', function(e) {
+	jQuery( '.profile-link' ).click(function(e) {
 		e.preventDefault();
+		
 		
 	//	var name = $(this).data( 'name' );
 	//	var id = $(this).data( 'id' );
 	//	alert(id);
+	
+	var objclass = '';
+	
+	if ( $( this ).closest('.wsuprofileTable')) { objclass = '.wsuprofileTable'; };
+	if ( $( this ).closest('.gallery')) { objclass = '.gallery'; };
+	
+//	objclass = '.wsuprofileTable'; 
 		
-
-		jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents('.wsuprofileTable')).fadeIn(500);
+	//	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents('.wsuprofileTable')).fadeIn(500);
+	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents( objclass )).fadeIn(500);
+		
+		
 				
 		jQuery.ajax( {
 				url: profiles.ajaxurl,
@@ -202,7 +252,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	/****sort by column ************/
+	/****sort by column tabular list view - display=list ************/
 	var headerdiv = $("div.wsuprofileTableRowHeader");
 	//alert(headerdiv.wsuprofileTableHead);
 	
@@ -263,12 +313,35 @@ jQuery(document).ready(function($){
 		if (!search) return false;
 		return new RegExp(search, "i").test($(el).text());
 	};
-	
+		
 		
 	  jQuery("#txtSearchPage").keyup(function() {
+		  	var searchclass = '';
+			
+			if ( jQuery('.column-list-profile').length ) { 
+				searchclass = ".column-list-profile";
+				}
+			
+			if ( jQuery('article').length ) {
+					searchclass = "article";
+				} 
+		 
+			 if ( jQuery('.wsuprofileTableRowData').length) {
+					searchclass = ".wsuprofileTableRowData";	
+				}
+			
+//			searchclass = ".wsuprofileTableRowData";
+			
+			
 	        var search = $(this).val();
-    	    $(".wsuprofileTableRowData").show();
-        if (search) $(".wsuprofileTableRowData").not(":containsNoCase(" + search + ")").hide();
+//    	    $(".wsuprofileTableRowData").show();
+    	    $( searchclass ).addClass('hidden');
+			$( searchclass ).removeClass('hidden');
+
+//        if (search) $(".wsuprofileTableRowData").not(":containsNoCase(" + search + ")").hide();
+		  if (search) $( searchclass ).not(":containsNoCase(" + search + ")").addClass('hidden');
+//		  $(change_set_by_a( jQuery('nav a.active') ));
+		  if ((search).length == 0) $(change_set_by_a( jQuery('nav a.active') ));
        });	
 	
 });
