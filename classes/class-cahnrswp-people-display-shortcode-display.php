@@ -12,7 +12,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		'location' => '',
 		'university_category' => '',
 		'tag' => '',
-		'count' => '10'	
+		'count' => '10',	
+		'show_search' => 'no',
 	 );	
 	 
    public function display_content( $atts, $content ) {
@@ -38,11 +39,14 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				break;
 				
 			case 'gallery':
-
-
+			
+				$html = $this->get_gallery_html( $display_profiles , $atts , $content );
+				
 				break;
 				
-			case 'small-list':
+			case 'column-list':
+			
+				$html = $this->get_column_list_html( $display_profiles , $atts , $content );
 
 
 				break;	
@@ -52,10 +56,105 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   
 	   
 	   }// display_contents
+	   
+	    protected function get_gallery_html( $display_profiles , $atts , $content ){
+		 
+		extract($atts);
+		
+		$number_of_profiles = count($display_profiles);
+
+		//var_dump($display_profiles);
+		
+		//var_dump($show_search);
+		
+	    $results = '';
+		$results .= '<div class="gallery">';
+		$results .= '<div class="gallery-people-header">';
+		
+        $results .= $this->directory_heading( $directory_title );
+
+		if ( $show_search == 'yes' ) {
+	 		$results .= $this->search_form();
+		}
+			
+			$results .= '</div>';		
+
+		
+		  			  
+		 $i = 0;
+		 	     
+		  foreach ($display_profiles as $profile ) {					
+				
+				$class = ( $i < $count ) ? 'display' : '';
+						
+				ob_start();
+								
+				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-gallery-display.php';
+
+				
+				$results .= ob_get_clean();
+				
+				$i++;
+				
+		  } // end foreach
+			 
+			 $results .= $this->pagination( $count,  $number_of_profiles );		  
+			 $results .= '</div>';		
+		  return $results;
+		 
+		 
+		 } //end get_column_list_html
 	
 	
 	
-	
+	 protected function get_column_list_html( $display_profiles , $atts , $content ){
+		 
+		extract($atts);
+		
+		$number_of_profiles = count($display_profiles);
+
+		//var_dump($display_profiles);
+		
+		//var_dump($show_search);
+		
+	    $results = '';
+		$results .= '<div class="column-list-profiles">';
+		$results .= $this->pagination( $count,  $number_of_profiles );
+		 		
+		$results .= '<div class="column-list-people-header">';
+        $results .= $this->directory_heading( $directory_title );
+
+		if ( $show_search == 'yes' ) {
+	 		$results .= $this->search_form();
+		}
+			
+			$results .= '</div>';		
+
+		
+		  			  
+		 $i = 0;
+		 	     
+		  foreach ($display_profiles as $profile ) {					
+				
+				$class = ( $i < $count ) ? 'display' : '';
+						
+				ob_start();
+								
+				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-column-list-display.php';
+
+				
+				$results .= ob_get_clean();
+				
+				$i++;
+				
+		  } // end foreach
+			 
+			 $results .= $this->pagination( $count,  $number_of_profiles );		  
+			 $results .= '</div>';		
+		  return $results;
+		 
+		 
+		 } //end get_column_list_html
 		 	
 
 
@@ -73,7 +172,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   $results = '';
 	   $results .= '<div class="people-header">';
 	   $results .= $this->directory_heading( $directory_title );
-		$results .= $this->search_form();
+	   if ( $show_search == 'yes' ) {
+	 		$results .= $this->search_form();
+		}
+	
 		$results .= '</div>';
 		 		   
 		$results .= '<div class="wsuprofileTable">';
@@ -90,6 +192,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		  foreach ($display_profiles as $profile ) {					
 				
 				$class = ( $i < $count ) ? 'row-display' : '';
+		
 						
 				ob_start();
 				

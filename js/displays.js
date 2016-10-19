@@ -53,8 +53,16 @@ jQuery(document).ready(function($){
 	var change_set_by_a = function( ic ){
 		
 		ic.addClass('active');
-		var items = jQuery('.wsuprofileTableRowData');
+		
+		if ( jQuery('.column-list-profile').length ) { 
+				var items = jQuery('.column-list-profile');
+			//	alert('inside c l profile class');
+			} else {
+				var items = jQuery('.wsuprofileTableRowData');	
+				}
+		
 		var inc = ic.closest('nav').data('inc');
+		
 		var index = ic.index();
 		
 		
@@ -67,6 +75,24 @@ jQuery(document).ready(function($){
 	//	alert(end);
 				
 		var i = 0;
+		if ( jQuery('.column-list-profile').length ) {
+		
+			items.each( function() {
+			if (( i >= start ) && ( i <= end ) ) {
+				
+				jQuery( this ).addClass('display');
+				
+				} else {
+					
+				jQuery( this ).removeClass('display');
+				} // end if 
+	
+				i++;
+			})	
+			
+			
+			} //if column-list-profile
+		
 		items.each( function() {
 			if (( i >= start ) && ( i <= end ) ) {
 				
@@ -79,6 +105,8 @@ jQuery(document).ready(function($){
 	
 				i++;
 			})	
+			
+			
 		
 	} //end change_set_by_a 
 	

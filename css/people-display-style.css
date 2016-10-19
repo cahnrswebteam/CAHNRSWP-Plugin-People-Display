@@ -7,8 +7,10 @@
 
 h3.dir-heading {
 	text-align:left;
-	display: inline-block;s
+	display: inline-block;
 	}
+	
+	
 /* Up and Down Arrows */
 /* ascending */
 .both:before, .wsuprofileTableHead.desc:before{
@@ -238,7 +240,7 @@ a.profile-link:after {
 	margin-top: -5px;
 	margin-left: 2px;
 }
-	}
+/*	} */
 		
 .wsuprofileTableHead {
 
@@ -303,11 +305,12 @@ a.previous:before {
     left: -30%;
 	border-right-color: #981e32;		
 }
-
+/*
 .paging_button {
     margin: 0 5px;
 	position: relative;
 }
+*/
 /*
 .paging_button.next:after, .paging_button.previous:before {
 	text-align: left;
@@ -345,7 +348,165 @@ nav > a {
 	text-transform:uppercase;
 	
 	}	
+/**** column list display ******************/
 	
+	
+.column-list-people-header {
+	position: relative;
+	
+	}
+.column-list-people-header .search-toolbar {
+	left: 0;
+	}
+.column-list-people-header h3.dir-heading {
+	display: block;
+	font-size: 1.25rem;
+	}
+
+.column-list-profile {
+	width: 100%;
+	line-height: 1.3rem;
+   vertical-align: top;
+	display: none;
+		
+	}
+
+.column-list-profile img {
+	width: 50px;
+/*	float: left;	 */
+	margin: 0;
+
+		
+}
+.column-list-profile > .cldata. > .clphoto {
+	padding-right: .3rem;
+	vertical-align: top;
+		
+}
+.column-list-profile > .cldata {
+	margin: 0 0 0 3.3rem;
+	}
+.column-list-profile > .cldata > .clname  {
+    color: #981e32;
+	font-weight: bold;
+
+}
+.column-list-profile > .cldata > .cltitle {
+
+	}
+.column-list-profile > .clemail {
+	
+}
+.column-list-profile > .clphone { 
+	
+
+}
+.column-list-profiles {
+	vertical-align: top;
+	}
+
+.column-list-profiles > .pagination {
+	text-align:center;
+	}
+
+.display, .column-list-display {
+	display: inline-block;
+	
+	}	
+	
+/******* Gallery *************/
+
+.gallery {
+	background: #fff;
+	}
+	
+	
+.content-wrap {
+/*	max-width: 1200px; margin: 0 auto; background: #282828; */
+	}	
+
+.gallery .gallery-people-header {
+	position:relative;
+	}
+
+.gallery article {
+    display: inline-block;
+    margin-top: 10px;
+    width: 25%;
+    vertical-align: top;
+	margin-right: -4px;
+	box-sizing:border-box;
+	}	
+
+.gallery article ul {
+	list-style-type: none;
+    margin: 0 .3rem .3rem;
+    padding: 0;
+}
+
+
+
+.gallery article > ul {
+
+   background-color: #fff;
+  /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
+   min-height: 220px;
+   position: relative;
+   
+	
+}
+.gallery article ul li {
+	padding: 0; 
+}
+
+
+
+.gallery article .gallery-photo {
+	margin-left:0%;
+	}
+
+.gallery article .gallery-photo img{	
+	width: 100%;
+	display: block;
+	margin: 0 8px .1em 0; 
+	}	
+	
+.gallery article .gallery-name {
+	color: #981e32; 
+	font-size: .95rem;
+	font-weight: bold;
+	
+	}	
+	
+.gallery article .gallery-title {
+	font-size: .80rem;
+	}	
+	
+.gallery article .gallery-link a {
+
+	font-size: .55rem;
+	font-weight: bold;
+	}
+	
+.gallery article .gallery-link {	
+	position: relative;
+}
+
+.gallery article .gallery-link:after  {
+	left: 42%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	border-left-color: #981e32; 
+	border-width: 4px;
+	margin-top: -4px;
+	margin-left: 2px;
+}
+
+/****************************/
 
 @media screen and (max-width:1022px) {
 	.cahnrswp-people-single-profile a.close {
@@ -401,6 +562,15 @@ nav > a {
 	.cahnrswp-people-single-profile { 
 	max-width: 70%;
 	}		
+	
+	/**** gallery section *****/
+	
+	.gallery article {
+	  width: 50%;	
+	}
+	 .gallery .content-wrap {
+		 font-size: 100%;
+	}
 	
 }
 
