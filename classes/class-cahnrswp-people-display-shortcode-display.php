@@ -172,6 +172,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		//var_dump($number_of_profiles);
 		 
 	   $results = '';
+	   $results .= '<div class="cahnrswp-people-display-wrapper">';
 	   $results .= '<div class="people-header">';
 	   $results .= $this->directory_heading( $directory_title );
 	   if ( $show_search == 'yes' ) {
@@ -199,9 +200,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		
 						
 				ob_start();
-				
-			//		'<div class="wsuprofileTableRowData">';
-				
+							
 				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-list-display.php';
 				
 				$results .= ob_get_clean();
@@ -210,10 +209,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				
 		  } // end foreach
 
-			 $results .= '</div>';	
+			 $results .= '</div>';	//close wsuprofileTable
 			 
 			 $results .= $this->pagination( $count,  $number_of_profiles );		  
-			 
+			 $results .= '</div>';	//close wrappter 
 		  return $results;
 		 
 				 

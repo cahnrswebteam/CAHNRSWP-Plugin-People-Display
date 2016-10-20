@@ -215,12 +215,28 @@ jQuery(document).ready(function($){
 	
 	var objclass = '';
 	
-	if ( $( this ).closest('.wsuprofileTable')) { objclass = '.wsuprofileTable'; };
-	if ( $( this ).closest('.gallery')) { objclass = '.gallery'; };
+	if ( $('div').hasClass('wsuprofileTable'))  { 
+			objclass = '.wsuprofileTable'; 
+			}
 	
-//	objclass = '.wsuprofileTable'; 
+	if ( $('div').hasClass('gallery')) { 
+		objclass = '.gallery'; 
+		}
+		
+		
+	if ( $('div').hasClass('column-list-profile')) { 
+		objclass = '.column-list-profiles'; 
+		}
+	
+	//	objclass = '.wsuprofileTable'; 
+
+	
 		
 	//	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents('.wsuprofileTable')).fadeIn(500);
+	//cahnrswp-people-single-profile-background 
+	//$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( $(this).parents('.wsuwp-people-wrapper') ).fadeIn(500);	-- Phil's 
+	//cahnrswp-people-display-wrapper
+	jQuery( '<div class="cahnrswp-people-single-profile-background close-profile"></div>' ).appendTo( $(this).parents('.cahnrswp-people-display-wrapper') ).fadeIn(500);
 	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents( objclass )).fadeIn(500);
 		
 		
@@ -245,7 +261,9 @@ jQuery(document).ready(function($){
 	jQuery( 'div' ).on( 'click' , '.close', function(e) {
 				if (e.target == this) {
 					e.preventDefault();
+					jQuery( '.cahnrswp-people-single-profile-background' ).remove();
 					jQuery( '.cahnrswp-people-single-profile' ).remove();
+					
 					document.title = default_title; 
 					}
 		});

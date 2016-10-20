@@ -3,7 +3,8 @@
 		<img src="<?php  echo $profile->profile_photo == '' ?  plugins_url('CAHNRSWP-Plugin-People-Display/images/placeholder.png') : $profile->profile_photo  ?>" align="left" />
     </div>
     <div class="cldata">
-    <div class="clname"><?php  echo $profile->profile_first_name; ?> <?php  echo $profile->profile_last_name; ?></div>
+    <div class="clname"><a class="profile-link" data-id="<?php echo $profile->profile_ID;?>" data-name="<?php echo $profile->profile_title->rendered;?> href="#"><?php  echo $profile->profile_first_name; ?> <?php  echo $profile->profile_last_name; ?></a>
+</div>
     <div class="cltitle">	<?php  echo $profile->profile_position_title; ?></div>
     <div class="clemail">
     	<a href="mailto:<?php echo $profile->profile_email;?>"><?php echo $profile->profile_email;?></a>
