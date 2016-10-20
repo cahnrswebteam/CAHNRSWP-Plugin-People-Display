@@ -237,7 +237,8 @@ jQuery(document).ready(function($){
 	//$( '<div class="cahnrs-profile-background close-profile"></div>' ).appendTo( $(this).parents('.wsuwp-people-wrapper') ).fadeIn(500);	-- Phil's 
 	//cahnrswp-people-display-wrapper
 	jQuery( '<div class="cahnrswp-people-single-profile-background close-profile"></div>' ).appendTo( $(this).parents('.cahnrswp-people-display-wrapper') ).fadeIn(500);
-	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents( objclass )).fadeIn(500);
+//	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents( objclass )).fadeIn(500);
+		jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery('.cahnrswp-people-single-profile-background')).fadeIn(500);
 		
 		
 				

@@ -121,13 +121,48 @@ font-size: .9rem;
   vertical-align: middle;
 
 }
+
+.cahnrswp-people-single-profile {
+	background: #fff;
+	box-shadow: 0px 5px 25px 0px rgba(70,78,84,0.95);
+	box-sizing: border-box;
+	display: inline-block;
+	max-height: 90%;
+	max-width: 990px;
+	overflow: auto;
+	padding: 2rem;
+	position: relative;
+	text-align: left;
+	vertical-align: middle;
+	width: 100%;
+	z-index: 99166;
+
+/* - test 10/19 7:42 pm
 	
+	background-color: #FFF;
+	border:#666 1px solid;
+	padding: 2rem;
+	position:absolute;
+	
+	max-height: 90%;
+	max-width: 70%;
+	width: 100%;
+	left: 20%;
+	top: 50%;
+	text-align:left;
+	margin-top: -145.5px;
+	overflow-y: auto;	
+	display: none;
+	z-index: 99166;
+*/	
+}
+/*	
 .cahnrswp-people-single-profile {
 	background-color: #FFF;
 	border:#666 1px solid;
 	padding: 2rem;
 	position:absolute;
-/*	vertical-align: middle; */
+	vertical-align: middle;
 	max-height: 90%;
 	max-width: 90%;
 	width: 100%;
@@ -137,7 +172,7 @@ font-size: .9rem;
 	overflow-y: auto;	
 	display: none;
 	z-index: 99166;
-
+*/
 /*
 	background: #fff;
 	box-shadow: 0px 5px 25px 0px rgba(70,78,84,0.95);
@@ -152,9 +187,8 @@ font-size: .9rem;
 	vertical-align: middle;
 	width: 100%;
 	z-index: 99166;
-*/	
 	}
-
+*/
 .cahnrswp-people-single-profile .profile-content { 
 	padding-top: 2.5rem;
 

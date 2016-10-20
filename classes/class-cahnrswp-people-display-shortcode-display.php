@@ -68,6 +68,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		//var_dump($show_search);
 		
 	    $results = '';
+	    $results .= '<div class="cahnrswp-people-display-wrapper">';
 		$results .= '<div class="gallery">';
 		$results .= '<div class="gallery-people-header">';
 		
@@ -99,11 +100,12 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		  } // end foreach
 			 
 			 $results .= $this->pagination( $count,  $number_of_profiles );		  
-			 $results .= '</div>';		
+			 $results .= '</div>';	
+ 			 $results .= '</div>';	//close wrappter 			
 		  return $results;
 		 
 		 
-		 } //end get_column_list_html
+		 } //end get_column_gallery_html
 	
 	
 	
@@ -118,8 +120,9 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		//var_dump($show_search);
 		
 	    $results = '';
+	    $results .= '<div class="cahnrswp-people-display-wrapper">';
 		$results .= '<div class="column-list-profiles">';
-	//	$results .= $this->pagination( $count,  $number_of_profiles );
+
 		 		
 		$results .= '<div class="column-list-people-header">';
         $results .= $this->directory_heading( $directory_title );
@@ -152,7 +155,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		  } // end foreach
 			 
 			 $results .= $this->pagination( $count,  $number_of_profiles );		  
-			 $results .= '</div>';		
+			 $results .= '</div>';
+			 $results .= '</div>';	//close wrappter 		
 		  return $results;
 		 
 		 
