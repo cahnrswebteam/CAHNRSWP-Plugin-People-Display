@@ -23,26 +23,28 @@ jQuery(document).ready(function($){
 	/*** pagination by Danial method *****/
 	
 	jQuery('nav a').click( function(){
-			
-		var active_index = jQuery('nav a.active' ).index();
 		
-		var last_index = jQuery('.pagination > nav a').length - 1;
+		var directory = jQuery( this ).closest( '.cahnrswp-people-display-wrapper');
+			
+		var active_index = directory.find('nav a.active' ).index();
+		
+		var last_index = directory.find('.pagination > nav a').length - 1;
 		
 	//	alert(active_index);
 		
 		if ( ( jQuery( this ).hasClass('next') ) && ( active_index < last_index )  ) {
-				var nxt = jQuery('nav a.active').next();
-				jQuery('nav a').removeClass('active');	
+				var nxt = directory.find('nav a.active').next();
+				directory.find('nav a').removeClass('active');	
 				change_set_by_a( nxt );		
 
 			} else if ( jQuery( this ).hasClass('previous') )  {
-				var prv = jQuery('nav a.active').prev();
-				jQuery('nav a').removeClass('active');	
+				var prv = directory.find('nav a.active').prev();
+				directory.find('nav a').removeClass('active');	
 				change_set_by_a( prv );		
 
 			}	else {
 			//	alert('in else');
-			jQuery('nav a').removeClass('active');	
+			directory.find('nav a').removeClass('active');	
     		change_set_by_a( jQuery( this ) );
 			}
 	});
@@ -283,27 +285,26 @@ jQuery(document).ready(function($){
 		jqidString = "#" + idString;
 	// alert( idString );
 		
-	
-		
 //	jQuery('#tbname').on('click', function() {
 	jQuery( jqidString,  function() {	
-		var frst = $( jqidString + '.wsuprofileTableHead').hasClass('both') ? 'asc' : 'desc';
-			$( jqidString + '.wsuprofileTableHead').addClass(frst);	
-		var o = $( jqidString + '.wsuprofileTableHead').hasClass('asc') ? 'desc' : 'asc';
-			$( '.wsuprofileTableHead').removeClass('both');	
-			$( jqidString ).siblings().not('.photo').addClass('both').removeClass('asc').removeClass('desc');
-			$( jqidString + '.wsuprofileTableHead').removeClass( 'asc' ).removeClass( 'desc').removeClass('both');			
-			$( jqidString + '.wsuprofileTableHead' ).addClass(o);
+		var frst = $( jqidString ).find('.arrows').hasClass('both') ? 'asc' : 'desc';
+			$( jqidString ).find('.arrows').addClass(frst);	
+		var o = $( jqidString ).find('.arrows').hasClass('asc') ? 'desc' : 'asc';
+			//	$( '.arrows').removeClass('both');	
+			$( jqidString ).siblings().find('.arrows').not('.photo').removeClass('asc').removeClass('desc').addClass('both');
+			$( jqidString ).find('.arrows').removeClass( 'asc' ).removeClass( 'desc').removeClass('both');			
+			$( jqidString ).find('.arrows' ).addClass(o);
 			
 		var alphabeticalOrderDivs = $divs.sort(function (a, b) {
 			
 //		var findiclasscode = ".wsuprofileTableCell.name a";
 
 		var findiclasscode = ".wsuprofileTableCell." + idString;
+	
 		
 		if ( idString == 'name') { findiclasscode + " a"} ;
-		
-		
+
+			
 			if ( o == 'asc' ) {
 					
 				return $(a).find( findiclasscode ).text().toLowerCase().localeCompare($(b).find( findiclasscode ).text().toLowerCase());

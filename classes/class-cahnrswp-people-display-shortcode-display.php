@@ -20,13 +20,17 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
  
 	$one_profile = new CAHNRSWP_People_Displays_Profiles();
 	$display_profiles = $one_profile->get_profiles( $atts );
-	
-	
-		
-	   
+	 
 	   $html = '';
 	   
 	  extract($atts);
+/*	
+	 $wg_url =  "https://people.wsu.edu/wp-json/wp/v2/tags/" . $work_group; 
+	 $json_wg = file_get_contents($wg_url);
+	 $wg_tag = json_decode($json_wg);	
+	 $work_group_name = $wg_tag->name; ??
+*/	 
+	   
 	   
 	//   var_dump($count);
 	   
@@ -167,6 +171,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 
 	 protected function get_list_html( $display_profiles , $atts , $content )
 		 {
+
+	//	var_dump($display_profiles);
 		
 		extract($atts);
 		//var_dump($count);
@@ -182,22 +188,55 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   if ( $show_search == 'yes' ) {
 	 		$results .= $this->search_form();
 		}
-	
-		$results .= '</div>';
-		 		   
-		$results .= '<div class="wsuprofileTable">';
-	    $results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
-	   	$results .= '<div class="wsuprofileTableHead photo"></div>';	
+
+/*
 	   	$results .= '<div class="wsuprofileTableHead both" id="name">Name</div>';		
 	   	$results .= '<div class="wsuprofileTableHead both" id="title">Title</div>';		
 	   	$results .= '<div class="wsuprofileTableHead both" id="deparment">Department</div>';		
 	   	$results .= '<div class="wsuprofileTableHead both" id="work-group">Workgroup</div>';	
-		$results .= '</div>';							
+*/
+	
+		$results .= '</div>';
+		 		   
+		$results .= '<div class="wsuprofileTable">';
+			$results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
+				$results .= '<div class="wsuprofileTableHead photo"></div>';	
+				$results .= '<div class="wsuprofileTableHead" id="name">Name<div class="arrows both"></div></div>';		
+				$results .= '<div class="wsuprofileTableHead" id="title">Title<div class="arrows both"></div></div>';		
+				$results .= '<div class="wsuprofileTableHead" id="deparment">Department<div class="arrows both"></div></div>';		
+				$results .= '<div class="wsuprofileTableHead" id="work-group">Workgroup<div class="arrows both"></div></div>';	
+			$results .= '</div>';							
+		
+		$title = '';
+		$email = '';
+		$phone = '';
+		$office = '';
 		  			  
 		 $i = 0;
 		 	     
-		  foreach ($display_profiles as $profile ) {					
-				
+		foreach ($display_profiles as $profile ) {	
+			
+				if ( isset($profile->profile_working_title[0]) ) {
+				 $title = $profile->profile_working_title[0]; 
+				} else {
+				  $title = $profile->profile_working_title[0];		
+				}
+			if ( ! empty($profile->profile_email_alt) ) {
+				 $email = $profile->profile_email_alt; 
+				} else {
+				  $email = $profile->profile_email;		
+				}
+			if ( ! empty($profile->profile_phone_alt) ) {
+				 $phone = $profile->profile_phone_alt; 
+				} else {
+				  $phone = $profile->profile_phone;		
+				}
+			if ( ! empty($profile->profile_office_alt) ) {
+				 $office = $profile->profile_office_alt; 
+				} else {
+				  $office = $profile->profile_office;		
+				}	
+								
 		//		$class = ( $i < $count ) ? 'row-display' : '';
 		
 				$class = ( $i < $count ) ? '' : 'hidden';
@@ -221,6 +260,39 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 
 				 
 	 } // end get_list_html 
+	 
+	 protected function alt_fields ( $profile ) {
+		 
+	 	$title = '';
+		$email = '';
+		$phone = '';
+		$office = '';
+		 
+		if ( isset($profile->profile_working_title[0]) ) {
+			 $title = $profile->profile_working_title[0]; 
+			} else {
+			  $title = $profile->profile_working_title[0];		
+			}
+		if ( ! empty($profile->profile_email_alt) ) {
+			 $email = $profile->profile_email_alt; 
+			} else {
+			  $email = $profile->profile_email;		
+			}
+		if ( ! empty($profile->profile_phone_alt) ) {
+			 $phone = $profile->profile_phone_alt; 
+			} else {
+			  $phone = $profile->profile_phone;		
+			}
+		if ( ! empty($profile->profile_office_alt) ) {
+			 $office = $profile->profile_office_alt; 
+			} else {
+			  $office = $profile->profile_office;		
+			}	
+		 
+		// 	return [$title, $email, $phone, $office];
+		
+		 } //alt_fields 
+	 
 	 
 	 public function directory_heading ( $directory_title ){
 		
@@ -252,9 +324,12 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	public function pagination( $count, $number_of_profiles ) {
 		
 		$inc = $count;
-	//	$number_of_profiles = count($display_profiles);
 		
+		//	$number_of_profiles = count($display_profiles);
 		//$page_nav = $number_of_profiles;
+	
+		
+		
 		$nav_html = '';
 		
 		$nav_html = '<nav data-inc="' . $inc . '">';
@@ -274,13 +349,11 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 			$nav_html .= '<a class="next">Next</a>';
 			$nav_html .= '</nav>';
 
-		$html = '';
-		
+		$html = '';	
 		$html .= '<div class="pagination">';
-	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
-		$html .= $nav_html;
-	//	$html .= '<a class="paging_button next">Next</a>';
+		$html .= $nav_html . '<div class="profiles-count">(' . $number_of_profiles . ' profiles)</div>';
 		$html .= '</div>';
+
 		
 		return $html;
 		

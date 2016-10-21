@@ -94,7 +94,9 @@ class CAHNRSWP_People_Displays_Profiles {
 				$one_profile->profile_office = $person->office;
 				$one_profile->profile_office_alt = $person->office_alt;
 				$one_profile->profile_phone = $person->phone;
+				$one_profile->profile_phone_alt = $person->phone_alt;
 				$one_profile->profile_email = $person->email;
+				$one_profile->profile_email_alt = $person->email_alt;
 				$one_profile->profile_website = $person->website;
 				$one_profile->profile_position_title = $person->position_title;
 				$one_profile->profile_working_title = $person->working_titles;			
@@ -103,24 +105,9 @@ class CAHNRSWP_People_Displays_Profiles {
 				$one_profile->profile_dept_bio = $person->bio_department;
 				$one_profile->profile_photo = 	$person->profile_photo;
 				$one_profile->profile_slug = $person->slug;
+				$one_profile->profile_tags = $person->tags;
 				$one_profile->profile_content = $person->content;		
-
-/*			    $one_profile->profile_last_name = $person['last_name'];
-				$one_profile->profile_first_name = $person['first_name'];
-				$one_profile->profile_office = $person['office'];
-				$one_profile->profile_office_alt = $person['office_alt'];
-				$one_profile->profile_phone = $person['phone'];
-				$one_profile->profile_email = $person['email'];
-				$one_profile->profile_website = $person['website'];
-				$one_profile->profile_position_title = $person['position_title'];
-				$one_profile->profile_working_title = $person['working_titles'];			
-				$one_profile->profile_degree = $person['degrees'];
-				$one_profile->profile_college_bio = $person['bio_college'];
-				$one_profile->profile_dept_bio = $person['bio_department'];
-				$one_profile->profile_photo = 	$person['profile_photo'];
-				$one_profile->profile_slug = $person['slug'];
-				$one_profile->profile_content = $person['content'];
-*/					
+		
 				$profiles[] = $one_profile;
 								
 				

@@ -26,13 +26,19 @@ abstract class CAHNRSWP_People_Displays {
 	
 	public $profile_phone;
 	
+	public $profile_phone_alt;
+	
 	public $profile_email;
+	
+	public $profile_email_alt;
 	
 	public $profile_website;
 
 	public $profile_position_title;
 	
 	public $profile_working_title;
+
+	public $profile_working_titles;
 	
 	public $profile_degree;
 	
@@ -43,6 +49,8 @@ abstract class CAHNRSWP_People_Displays {
 	public $profile_photo;	
 	
 	public $profile_slug;
+	
+	public $profile_tags;
 	
 	public $profile_content;
 	

@@ -39,6 +39,11 @@ class CAHNRSWP_People_Displays_General extends CAHNRSWP_People_Displays {
 		$test =  $_POST['oneprofile'];
 		  
 		// var_dump($test);
+			 
+		$title = '';
+		$email = '';
+		$phone = '';
+		$office = '';
 		   
 		if ( $_POST['oneprofile'] ) {
 				
@@ -50,9 +55,48 @@ class CAHNRSWP_People_Displays_General extends CAHNRSWP_People_Displays {
 		
 			$one_profile = json_decode($json);
 			
-			//var_dump($one_profile);
+	//		$tags_url ="https://people.wsu.edu/wp-json/wp/v2/tags?post=" . $_POST['oneprofile'];
+			
+	//		$json_tags =  file_get_contents($tags_url);
+			
+	//		$one_profile_tags = json_decode($json_tags);
+			
+		//	var_dump($one_profile_tags);
+			
+	//		$one_profile_tags_names = array();
+			
+	//		foreach ( $one_profile_tags as $one_profile_tag) {
+			
+	//			array_push($one_profile_tags_names, $one_profile_tag->name);
+					
+	//		}
+	//		$names_string = implode(',', $one_profile_tags_names);
+		//	var_dump( $one_profile_tags_names);
+		//	var_dump($names_string);		
+			
 			
 			//$results .= '<div class="cahnrswp-people-single-profile">';
+			
+			if ( isset($one_profile->working_titles[0]) ) {
+				 $title = $one_profile->working_titles[0]; 
+				} else {
+				  $title = $one_profile->position_title;		
+				}
+			if ( ! empty($one_profile->email_alt) ) {
+				 $email = $one_profile->email_alt; 
+				} else {
+				  $email = $one_profile->email;		
+				}
+			if ( ! empty($one_profile->phone_alt) ) {
+				 $phone = $one_profile->phone_alt; 
+				} else {
+				  $phone = $one_profile->phone;		
+				}
+			if ( ! empty($one_profile->office_alt) ) {
+				 $office = $one_profile->office_alt; 
+				} else {
+				  $office = $one_profile->office;		
+				}	
 				
 			ob_start();
 			
