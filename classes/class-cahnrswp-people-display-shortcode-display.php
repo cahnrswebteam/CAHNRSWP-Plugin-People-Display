@@ -14,23 +14,18 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		'tag' => '',
 		'count' => '10',	
 		'show_search' => 'no',
+		'fields' => 'photo,name,title,department,workgroup',
+		'exclude' => '',
 	 );	
 	 
    public function display_content( $atts, $content ) {
  
 	$one_profile = new CAHNRSWP_People_Displays_Profiles();
 	$display_profiles = $one_profile->get_profiles( $atts );
-	 
-	   $html = '';
+	
+	$html = '';
 	   
-	  extract($atts);
-/*	
-	 $wg_url =  "https://people.wsu.edu/wp-json/wp/v2/tags/" . $work_group; 
-	 $json_wg = file_get_contents($wg_url);
-	 $wg_tag = json_decode($json_wg);	
-	 $work_group_name = $wg_tag->name; ??
-*/	 
-	   
+	extract($atts);
 	   
 	//   var_dump($count);
 	   
@@ -171,15 +166,20 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 
 	 protected function get_list_html( $display_profiles , $atts , $content )
 		 {
-
-	//	var_dump($display_profiles);
 		
 		extract($atts);
-		//var_dump($count);
-		
+	
 		$number_of_profiles = count($display_profiles);
 		
-		//var_dump($number_of_profiles);
+		$profile_list_elements = array();	
+		$profile_list_elements = explode("," , $fields);
+		
+		$excluded = explode(",", $exclude);
+		
+		
+ //   	$profile_list_elements = array( 'photo', 'name', 'title', 'department', 'workgroup' ); 
+//		$profile_list_elements = array( 'name', 'title', 'photo', 'department', 'workgroup' ); 
+		
 		 
 	   $results = '';
 	   $results .= '<div class="cahnrswp-people-display-wrapper">';
@@ -188,63 +188,118 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	   if ( $show_search == 'yes' ) {
 	 		$results .= $this->search_form();
 		}
-
-/*
-	   	$results .= '<div class="wsuprofileTableHead both" id="name">Name</div>';		
-	   	$results .= '<div class="wsuprofileTableHead both" id="title">Title</div>';		
-	   	$results .= '<div class="wsuprofileTableHead both" id="deparment">Department</div>';		
-	   	$results .= '<div class="wsuprofileTableHead both" id="work-group">Workgroup</div>';	
-*/
 	
 		$results .= '</div>';
-		 		   
-		$results .= '<div class="wsuprofileTable">';
-			$results .= '<div class="wsuprofileTableRowHeader" data-id="' . $count . '">';
-				$results .= '<div class="wsuprofileTableHead photo"></div>';	
-				$results .= '<div class="wsuprofileTableHead" id="name">Name<div class="arrows both"></div></div>';		
-				$results .= '<div class="wsuprofileTableHead" id="title">Title<div class="arrows both"></div></div>';		
-				$results .= '<div class="wsuprofileTableHead" id="deparment">Department<div class="arrows both"></div></div>';		
-				$results .= '<div class="wsuprofileTableHead" id="work-group">Workgroup<div class="arrows both"></div></div>';	
-			$results .= '</div>';							
+	 
+		$results .= $this->list_heading( $profile_list_elements );
 		
-		$title = '';
-		$email = '';
-		$phone = '';
-		$office = '';
-		  			  
 		 $i = 0;
+		 
+		
+		$profile_elements_count = count($profile_list_elements);
+
+		$cell_widths_4 = array( 13,25,19,19,24 );
+		$cell_widths_3 = array( 20,30,20,30 ); 
+		$cell_widths_2 = array( 25,43,32 ); 
+		$cell_widths_1 = array( 40,60 ); 
+		$cell_widths_0 = array( 100 ); 
+		
+		$cell_widths_array =  array( $cell_widths_0 , $cell_widths_1, $cell_widths_2, $cell_widths_3, $cell_widths_4 );
+		
+	//	$equal_cell_widths = ( 100 /( count( $profile_list_elements ) ) );
+		
+		
+		$which_cell_widths_array = array();
+		
+		$which_cell_widths_array = $cell_widths_array [( $profile_elements_count - 1 ) ];
+		 
+		 $title = '';
+		 $email = '';
+		 $office = '';
+		 $phone ='';
 		 	     
-		foreach ($display_profiles as $profile ) {	
+		  foreach ($display_profiles as $profile ) {
+			  
+			  if ( isset ($profile->profile_working_title[0]) ) {
+					$title = $profile->profile_working_title[0];									  
+				} else {
+					$title = $profile->profile_position_title;
+				}
 			
-				if ( isset($profile->profile_working_title[0]) ) {
-				 $title = $profile->profile_working_title[0]; 
+			if ( !empty($profile->profile_email_alt) ) {
+					$email = $profile->profile_email_alt;									  
 				} else {
-				  $title = $profile->profile_working_title[0];		
+					$email = $profile->profile_email;
 				}
-			if ( ! empty($profile->profile_email_alt) ) {
-				 $email = $profile->profile_email_alt; 
+				
+			if ( !empty($profile->profile_office_alt) ) {
+					$office = $profile->profile_office_alt;									  
 				} else {
-				  $email = $profile->profile_email;		
+					$office = $profile->profile_office;
 				}
-			if ( ! empty($profile->profile_phone_alt) ) {
-				 $phone = $profile->profile_phone_alt; 
+				
+			if ( !empty($profile->profile_phone_alt) ) {
+					$phone = $profile->profile_phone_alt;									  
 				} else {
-				  $phone = $profile->profile_phone;		
+					$phone = $profile->profile_phone;
+				}					
+	
+			if (in_array("email", $excluded)) {
+				 $email = '';
 				}
-			if ( ! empty($profile->profile_office_alt) ) {
-				 $office = $profile->profile_office_alt; 
-				} else {
-				  $office = $profile->profile_office;		
+				
+			if (in_array("phone", $excluded)) {
+				 $phone = '';
 				}	
-								
+			if (in_array("profile", $excluded)) {
+			//	 $profile-link = '';
+				}		
+				
+			if (in_array("name", $excluded)) {
+				
+				}
+			
+					
+			//	var_dump($title);										  
+														  
+				
 		//		$class = ( $i < $count ) ? 'row-display' : '';
 		
-				$class = ( $i < $count ) ? '' : 'hidden';
-		
+			$class = ( $i < $count ) ? '' : 'hidden';
 						
-				ob_start();
+			ob_start();
 							
-				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-list-display.php';
+		//	 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-list-display.php';
+		
+			// adaptive columns		
+				
+			$cell_width_index = 0;
+			
+			$percent_width = '';
+			
+			$row_html = '';
+			
+			
+			include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display-row-header.php';
+			 
+			foreach ( $profile_list_elements as $cell_class ) {
+			
+				$percent_width = $which_cell_widths_array[ $cell_width_index ] . '%';	
+				
+				$cell_html = $this->get_cell_content( $profile, $title, $email, $office, $phone, $cell_class );
+				
+				 
+				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display.php';
+		
+				 $cell_width_index++;
+				
+				} //end foreach
+
+			include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display-row-footer.php';		
+	
+			// adaptive columns
+	 
+	//			 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display.php';
 				
 				$results .= ob_get_clean();
 				
@@ -261,38 +316,109 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				 
 	 } // end get_list_html 
 	 
-	 protected function alt_fields ( $profile ) {
+	 public function get_cell_content ($profile, $title, $email, $office, $phone, $field ) {
 		 
-	 	$title = '';
-		$email = '';
-		$phone = '';
-		$office = '';
+		$field_html = ''; 
+		ob_start(); 
 		 
-		if ( isset($profile->profile_working_title[0]) ) {
-			 $title = $profile->profile_working_title[0]; 
-			} else {
-			  $title = $profile->profile_working_title[0];		
-			}
-		if ( ! empty($profile->profile_email_alt) ) {
-			 $email = $profile->profile_email_alt; 
-			} else {
-			  $email = $profile->profile_email;		
-			}
-		if ( ! empty($profile->profile_phone_alt) ) {
-			 $phone = $profile->profile_phone_alt; 
-			} else {
-			  $phone = $profile->profile_phone;		
-			}
-		if ( ! empty($profile->profile_office_alt) ) {
-			 $office = $profile->profile_office_alt; 
-			} else {
-			  $office = $profile->profile_office;		
-			}	
-		 
-		// 	return [$title, $email, $phone, $office];
+ 		switch( $field ){
+		   
+		   case 'photo':
+			
+				  include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display-cell-photo.php';
+			
+				break;
+				
+			case 'name':
+				
+				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display-cell-name.php';
+				
+				break;
+
+	   		case 'title':
+				
+				 include plugin_dir_path( dirname( __FILE__ ) ) . 'inc/inc-adeptive-list-display-cell-title.php';
+				
+				break;
+				
+		   case 'department':
+	
+				$field_html = 'Department';
+				
+				break;
 		
-		 } //alt_fields 
+			case 'workgroup':
+	
+				$field_html = 'Workgroup';
+				
+				break;
+		} //end switch
+		
+			//$field_html.= ob_get_clean();
+			
+			return $field_html.= ob_get_clean();
+			
+	} //get_cell_content
 	 
+	 public function list_heading ( $profile_list_elements ){
+
+
+		$html = '';
+		$html .= '<div class="profile-table">';
+		$html .= '<div class="profile-table-row-header" data-id="">';
+		
+//		$profile_list_elements = array();	
+//    	$profile_list_elements = array( 'photo', 'name', 'title', 'department', 'workgroup' ); 
+		
+//		$profile_list_elements = array( 'name', 'title', 'department', 'workgroup', 'photo' ); 
+//		$profile_list_elements = array( 'name', 'title', 'department', 'workgroup' ); 
+		$profile_elements_count = count($profile_list_elements);
+
+		$cell_widths_4 = array( 13,25,19,19,24 );
+		$cell_widths_3 = array( 20,30,20,30 ); 
+		$cell_widths_2 = array( 25,43,32 ); 
+		$cell_widths_1 = array( 40,60 ); 
+		$cell_widths_0 = array( 100 ); 
+		
+		$cell_widths_array =  array( $cell_widths_0 , $cell_widths_1, $cell_widths_2, $cell_widths_3, $cell_widths_4 );
+		
+	//	$equal_cell_widths = ( 100 /( count( $profile_list_elements ) ) );
+		
+	//	$html = '';
+		
+		$which_cell_widths_array = array();
+		
+		$which_cell_widths_array = $cell_widths_array [( $profile_elements_count - 1 ) ];
+		
+		$cell_width_index = 0;
+
+		
+		$percent_width = '';
+/*		
+		$html .= '<div class="profile-table-head photo"></div>';	
+		$html .= '<div class="profile-table-head name">Name<div class="arrows"></div></div>';		
+		$html .= '<div class="profile-table-head title">Title<div class="arrows"></div></div>';		
+		$html .= '<div class="profile-table-head deparment">Department<div class="arrows"></div></div>';		
+		$html .= '<div class="profile-table-head work-group">Workgroup<div class="arrows"></div></div>';
+*/	
+		foreach ( $profile_list_elements as $cell_class ) {
+		
+			$percent_width = $which_cell_widths_array[ $cell_width_index ] . '%';	
+	
+//var_dump('class ' . $cell_class . ' percent_width ' .$percent_width . ' cell_width_index ' . $cell_width_index . '<br />');
+
+			$html .= '<div class="profile-table-head ' . $cell_class . '" width="' . $percent_width .'">'.  $cell_class .'<div class="arrows"></div></div>';
+	
+			 $cell_width_index++;
+			
+            }
+           
+            
+		  $html .= '</div>';
+		
+		return $html;
+		 
+	 } //list_heading
 	 
 	 public function directory_heading ( $directory_title ){
 		
@@ -324,12 +450,9 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	public function pagination( $count, $number_of_profiles ) {
 		
 		$inc = $count;
+	//	$number_of_profiles = count($display_profiles);
 		
-		//	$number_of_profiles = count($display_profiles);
 		//$page_nav = $number_of_profiles;
-	
-		
-		
 		$nav_html = '';
 		
 		$nav_html = '<nav data-inc="' . $inc . '">';
@@ -349,11 +472,13 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 			$nav_html .= '<a class="next">Next</a>';
 			$nav_html .= '</nav>';
 
-		$html = '';	
+		$html = '';
+		
 		$html .= '<div class="pagination">';
-		$html .= $nav_html . '<div class="profiles-count">(' . $number_of_profiles . ' profiles)</div>';
+	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
+		$html .= $nav_html;
+	//	$html .= '<a class="paging_button next">Next</a>';
 		$html .= '</div>';
-
 		
 		return $html;
 		

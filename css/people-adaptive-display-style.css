@@ -1,0 +1,266 @@
+/* CSS Document */
+
+.profile-table {
+	display: table;
+	width: 100%;
+	position: relative;
+}
+	
+.profile-table-row-header, .profile-table-row-data  {
+	 display: table-row;
+	}
+	
+.profile-table-row-data {
+	display: table-row;
+	}	
+	
+/*	
+.profile-table-row-data:nth-child(old){
+	background-color: #999;
+}
+
+.profile-table-row-data:nth-child(even){
+	background-color: #fff;
+}
+*/
+/*
+.profile-table-row-data:hover, .profile-table-row-data:nth-child(even):hover, .profile-table-head:hover {	
+	background-color: #ccc;
+}
+*/
+	
+.profile-table-heading {
+	display: table-header-group;
+	}
+	
+.profile-table-Body {
+	display: table-row-group;
+	}
+
+.profile-table-cell, .profile-table-head {
+	display: table-cell;
+	position: relative;
+	text-align:left;
+	border-bottom: 1px solid #ddd;
+	}	
+	
+.profile-table-head { 
+	vertical-align: bottom;
+	text-transform: uppercase;
+}
+.profile-table-cell {	
+	padding-top: .7rem; 
+	vertical-align: top;
+}
+.profile-table-cell.photo, .profile-table-head.photo {
+	width: 13%;
+	padding: 7px 0 0;
+
+}
+.profile-table-cell.photo img {
+	width: 90%;
+	 }
+
+
+.profile-table-cell.name, .profile-table-head.name {
+	width: 24%;
+ /*   padding-top: 1.25rem;   */
+}
+
+/*
+.profile-table-head.name { 
+	width: 22%;
+}
+*/
+.profile-table-head.title, .profile-table-head.department { 
+	width: 18%;
+
+}
+.profile-table-head.workgroup { 
+	width: 24%
+
+}
+
+/*
+.name {
+	font-size: 1rem;
+	font-weight: 400;
+    line-height: .1rem;
+ 
+	}
+*/
+.profile-table-cell .phone-email {
+	font-size: .75rem;
+	padding: 5px 0;
+	line-height: .40rem;
+	}
+
+.profile-table-cell .phone-email .profile-link {
+	font-size: .65rem;
+	position: relative;
+	}
+	
+.phone, .email {
+	
+	}
+
+
+.profile-table-cell .phone-email a.profile-link:after,
+.gallery article .gallery-link a.profile-link:after{
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	border-left-color: #981e32;
+	border-width: 5px;
+	margin-top: -5px;
+	margin-left: 2px;
+}
+
+		
+.profile-table-head {
+	font-size: .70rem;
+	text-transform:uppercase;
+	vertical-align:bottom;
+	}	
+
+/*
+.row-display {
+	display:table-row; 
+
+	}	
+*/
+
+/****************************/
+
+@media screen and (max-width:1022px) {
+	.cahnrswp-people-single-profile a.close {
+		margin: -2rem auto auto -2rem;
+	}
+}
+@media screen and (max-width:791px) {
+
+}
+
+@media only screen and (max-width:693px) {
+
+.profile-table {
+	padding-top: .5rem;
+	}	
+
+	
+.profile-table-row-header {
+		display: none;
+	}
+.profile-table-cell.name {
+		width: 100%;
+		line-height: .1rem;
+		}
+	.profile-table-cell.photo {
+		width: 100%;
+		}
+	.profile-table-cell.photo img {	
+		width: 40%;
+	}
+	
+	.profile-table-row-data {
+		width: 100%;
+		}
+	.profile-table-cell {
+		display: block;
+		border: none;	
+		width: 100%;
+		}	
+	.profile-table-cell.photo {	
+		border-top: 1px solid #ddd;
+	}
+	h3.dir-heading {
+		display: none;
+		}
+	.people-header {
+		padding: 20px 0;
+		}	
+	.search-toolbar {
+
+		position: relative;
+	}	
+			
+
+.cahnrswp-people-single-profile { 
+
+	max-width: 95%;
+	width: 93%;
+	max-height: 40%;
+	
+	}		
+
+
+	
+	/**** gallery section *****/
+	
+	.gallery article {
+	  width: 50%;	
+	}
+	.gallery .gallery-people-header {
+		position:relative;
+		padding-bottom: 1.5rem;
+	}
+
+	
+}
+
+@media only screen and (max-width:480px) {
+.profile-table-cell.name {
+		width: 100%;
+		line-height: .1rem;
+		}
+	.profile-table-cell.photo {
+		width: 100%;
+		}
+	.profile-table-cell.photo img {	
+		width: 100%;
+	}
+	
+	.profile-table-row-data {
+		width: 100%;
+		}
+	.profile-table-cell {
+		display: block;
+		border: none;	
+		width: 100%;
+		}	
+	.profile-table-cell.photo {	
+		border-top: 1px solid #ddd;
+	}		
+
+
+				
+	h3.dir-heading {
+		display: none;
+		}
+	.people-header {
+		padding: 20px 0;
+		}	
+	.search-toolbar {
+		position: relative;
+	}	
+	.profile-table-cell.photo {
+		width: 45%;
+		}
+	
+	.gallery article {
+	  width: 100%;	
+	}
+	
+	}
+
+@media only screen and (min-width:1188px) {
+
+}
+
+@media only screen and (min-width:1386px) {
+	
+}

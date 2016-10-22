@@ -12,117 +12,33 @@ h3.dir-heading {
 	
 	
 /* Up and Down Arrows */
-
-.arrows {
-	display: inline-block;
-	margin-right: 5px;
-	}
-
-.both:before, .arrows.desc:before{
-	content: "\25B2"; 
-	font-size: 8px;
-	position: absolute;
-	top: -3px; 
-	display: inline-block;
-}
-	
-/* descending */	
-.both:after, .arrows.asc:after{
-	content: "\25BC"; 
-	font-size: 8px;
-	position: absolute;
-	top: 3px; 
-	display: inline-block;
-	}	
-	
 /* ascending */
-/*
 .both:before, .wsuprofileTableHead.desc:before{
 	content: "\25B2"; 
+/*	content: "\25B4"; */
 	font-size: 8px;
 	position: absolute;
 	top: -3px;
 	display: inline-block;
+	/* left: 60%;*/
 	left:auto;
-	right: 10px; 
+	right: 10px;
+	
+
 	}
-*/
 /* descending */	
-/*
 .both:after, .wsuprofileTableHead.asc:after{
 	content: "\25BC"; 
+/*	content: "\25BE";  */
 	font-size: 8px;
 	position: absolute;
 	top: 3px;
 	display: inline-block;
 	left:auto;
-	right: 10px; 
+	right: 10px;
+/*	left: 60%; */
+	
 	}
-*/
-
-	
-.wsuprofileTableHeading {
-	display: table-header-group;
-	}	
-
-.wsuprofileTableHead {
-	display: inline-block;
-	font-size: .70rem;
-	text-transform:uppercase;
-	vertical-align:bottom;
-	}		
-
-
-.wsuprofileTableHead, .wsuprofileTableCell {
-	display: table-cell;
-	position: relative;
-	text-align:left;
-	border-bottom: 1px solid #ddd;
-	}	
-
-.wsuprofileTableHead #name { 
-	width: 22%;
-}
-#title, #deparment { 
-	width: 17%;
-/*	 padding-top: 1.25rem; */
-}
-#work-group { 
-	width: 22%
-/*	 padding-top: 1.25rem; */
-}
-
-.wsuprofileTableBody {
-	display: table-row-group;
-	}
-	
-.wsuprofileTableCell {
-	/*border-top: 1px solid #ddd; */	
-	padding-top: .7rem; 
-	vertical-align: top;
-	
-}
-.wsuprofileTableCell.photo, .wsuprofileTableHead.photo {
-/*	max-width: 114px; */
-	width: 12%;
-	padding: 7px 0 0;
-
-}
-.wsuprofileTableCell.photo img {
-	width: 90%;
-	 }
-	
-.wsuprofileTableCell.name {
-/*    min-width: 180px; */
-	width: 22%;
-    padding-top: 1.25rem; 
-}
-/*
-.wsuprofileTableRowData:hover, .wsuprofileTableRowData:nth-child(even):hover, .wsuprofileTableHead:hover {	
-	background-color: #ccc;
-}
-*/
-	
 
 .search-toolbar {
 	position: absolute;
@@ -313,8 +229,65 @@ font-size: .9rem;
 	background-color: #fff;
 }
 */
+.wsuprofileTableRowData:hover, .wsuprofileTableRowData:nth-child(even):hover, .wsuprofileTableHead:hover {	
+	background-color: #ccc;
+}
 
+	
+.wsuprofileTableHeading {
+	display: table-header-group;
+	}	
+.wsuprofileTableBody {
+	display: table-row-group;
+	}
+	
+.wsuprofileTableCell, .wsuprofileTableHead {
+	display: table-cell;
 
+/*	width: 20%; */
+
+	position: relative;
+	text-align:left;
+	border-bottom: 1px solid #ddd;
+	}	
+.wsuprofileTableHead { 
+	vertical-align: bottom;
+	text-transform: uppercase;
+}
+.wsuprofileTableCell {
+	/*border-top: 1px solid #ddd; */	
+	padding-top: .7rem; 
+	vertical-align: top;
+	
+}
+.wsuprofileTableCell.photo, .wsuprofileTableHead.photo {
+/*	max-width: 114px; */
+	width: 12%;
+	padding: 7px 0 0;
+
+}
+.wsuprofileTableCell.photo img {
+	width: 90%;
+	 }
+	
+.wsuprofileTableCell.name {
+/*    min-width: 180px; */
+	width: 22%;
+    padding-top: 1.25rem; 
+}
+.wsuprofileTableHead #name { 
+	width: 22%;
+}
+#title, #deparment { 
+	width: 17%;
+/*	 padding-top: 1.25rem; */
+}
+#work-group { 
+	width: 22%
+/*	 padding-top: 1.25rem; */
+}
+
+/*
 .name {
 	font-size: 1rem;
 	font-weight: 400;
@@ -346,9 +319,15 @@ font-size: .9rem;
 	margin-top: -5px;
 	margin-left: 2px;
 }
-
+*/
 		
+.wsuprofileTableHead {
 
+	font-size: .70rem;
+	text-transform:uppercase;
+	vertical-align:bottom;
+
+	}	
 
 
 .row-display {
@@ -359,12 +338,8 @@ font-size: .9rem;
 /********** pagination ***************/
 
 .pagination {
-	
-	position:relative;
+	text-align: left;
 	}
-.profiles-count {
-	margin:auto;
-	}	
 .pagination a {
 	color: #717171;
 	}	

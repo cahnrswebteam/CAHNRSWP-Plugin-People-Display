@@ -10,7 +10,7 @@
 <?php echo $title; ?>
 <?php // echo implode("," , $one_profile->degrees); ?><br />
 <?php // echo  implode("," ,$one_profile->college_bio); ?>
-<?php echo implode("," ,$one_profile->dept_bio); ?><br />
+<?php // echo implode("," ,$one_profile->dept_bio); ?><br />
 <div class="profile-content">
 <?php echo $one_profile->content->rendered; ?>
 </div>

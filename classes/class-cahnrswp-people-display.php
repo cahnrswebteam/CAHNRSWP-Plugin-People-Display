@@ -37,8 +37,6 @@ abstract class CAHNRSWP_People_Displays {
 	public $profile_position_title;
 	
 	public $profile_working_title;
-
-	public $profile_working_titles;
 	
 	public $profile_degree;
 	
@@ -49,8 +47,6 @@ abstract class CAHNRSWP_People_Displays {
 	public $profile_photo;	
 	
 	public $profile_slug;
-	
-	public $profile_tags;
 	
 	public $profile_content;
 	
@@ -88,10 +84,11 @@ abstract class CAHNRSWP_People_Displays {
 				
 //			 wp_register_style( 'people-displays-style',  plugins_url( 'css/people-display-style.css', __FILE__ ) );
 			 
-			 wp_register_style( 'people-displays-style',  plugins_url( '/css/people-display-style.css', dirname(__FILE__) ) );
+		 wp_register_style( 'people-displays-style',  plugins_url( '/css/people-display-style.css', dirname(__FILE__) ) );
 		 
-	         wp_enqueue_style('people-displays-style');
+	     wp_enqueue_style('people-displays-style');
 			 
+		 
 		
 		} //end register_styles
 		
@@ -101,6 +98,11 @@ abstract class CAHNRSWP_People_Displays {
 	//		 wp_register_style( 'people-displays-style',  plugins_url( '/CAHNRSWP-Plugin-People-display/css/people-display-style.css') );
 	         wp_enqueue_style('people-displays-style');
 			
+			
+	wp_register_style( 'people-displays-adative-style',  plugins_url( '/css/people-adaptive-display-style.css', dirname(__FILE__) ) );
+		 
+	     wp_enqueue_style('people-displays-adative-style');	 
+		
 		
 		} //end register_styles	
 	

@@ -1,0 +1,1 @@
+<div class="profile-table-cell <?php echo $cell_class; ?>" width="<?php echo $percent_width; ?>"><?php echo $cell_html ?></div>
