@@ -13,33 +13,31 @@ h3.dir-heading {
 	
 /* Up and Down Arrows */
 /* ascending */
+/*
 .both:before, .wsuprofileTableHead.desc:before{
 	content: "\25B2"; 
-/*	content: "\25B4"; */
 	font-size: 8px;
 	position: absolute;
 	top: -3px;
 	display: inline-block;
-	/* left: 60%;*/
+
 	left:auto;
 	right: 10px;
-	
-
 	}
+*/
+	
 /* descending */	
+/*
 .both:after, .wsuprofileTableHead.asc:after{
 	content: "\25BC"; 
-/*	content: "\25BE";  */
 	font-size: 8px;
 	position: absolute;
 	top: 3px;
 	display: inline-block;
 	left:auto;
 	right: 10px;
-/*	left: 60%; */
-	
 	}
-
+*/
 .search-toolbar {
 	position: absolute;
 	right: 0;
@@ -58,6 +56,22 @@ h3.dir-heading {
 	border: 1px solid;
     border-radius: 5px;
 	}	
+.search-toolbar input[type="button"] {
+	color: #fff;
+	outline: none;
+	border:none;
+	padding: 0;
+	margin-left: -31px;
+	height: 25px;
+	font-size: 0;
+	width: 30px;
+	background-color: #fff;
+	background-image: url(../images/Search-icon.png);
+	background-size: 26px auto;
+	background-repeat: no-repeat;
+	background-position: center center; 
+	
+	}
 
 	
 input::-webkit-input-placeholder {
@@ -76,17 +90,6 @@ input:-ms-input-placeholder {
 font-size: .9rem;
 }	
 	
-.search-toolbar input[type="button"] {
-	display: inline-block;
- 	margin-left: -35px; */
-    height: 28px;
-	vertical-align: middle;
-    width: 35px;
-	color: #fff;
-	font-weight:700;
-	background-color:#999;
-	border: 1px solid #999;
-}	
 
 .close {
 	position: absolute;

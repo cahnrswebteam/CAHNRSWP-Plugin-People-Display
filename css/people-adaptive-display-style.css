@@ -14,6 +14,28 @@
 	display: table-row;
 	}	
 	
+.arrows {
+	display: inline-block;
+	margin-right: 5px;
+	}
+
+.both:before, .arrows.desc:before{
+	content: "\25B2"; 
+	font-size: 8px;
+	position: absolute;
+	top: -3px; 
+	display: inline-block;
+}
+	
+/* descending */	
+.both:after, .arrows.asc:after{
+	content: "\25BC"; 
+	font-size: 8px;
+	position: absolute;
+	top: 3px;
+	display: inline-block;
+	}	
+
 /*	
 .profile-table-row-data:nth-child(old){
 	background-color: #999;
@@ -33,9 +55,14 @@
 	display: table-header-group;
 	}
 	
-.profile-table-Body {
-	display: table-row-group;
-	}
+
+
+.profile-table-head { 
+	vertical-align: bottom;
+	text-transform: uppercase;
+	display: inline-block;
+	font-size: .70rem;
+}	
 
 .profile-table-cell, .profile-table-head {
 	display: table-cell;
@@ -44,10 +71,11 @@
 	border-bottom: 1px solid #ddd;
 	}	
 	
-.profile-table-head { 
-	vertical-align: bottom;
-	text-transform: uppercase;
-}
+
+.profile-table-Body {
+	display: table-row-group;
+	}
+
 .profile-table-cell {	
 	padding-top: .7rem; 
 	vertical-align: top;

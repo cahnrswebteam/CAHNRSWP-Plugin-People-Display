@@ -64,8 +64,8 @@ jQuery(document).ready(function($){
 				var items = jQuery('article');
 		} 
 		 
-		 if ( jQuery('.wsuprofileTableRowData').length) {
-				var items = jQuery('.wsuprofileTableRowData');	
+		 if ( jQuery('.profile-table-row-data').length) {
+				var items = jQuery('.profile-table-row-data');	
 			}
 							
 		var inc = ic.closest('nav').data('inc');	
@@ -217,8 +217,8 @@ jQuery(document).ready(function($){
 	
 	var objclass = '';
 	
-	if ( $('div').hasClass('wsuprofileTable'))  { 
-			objclass = '.wsuprofileTable'; 
+	if ( $('div').hasClass('profile-table'))  { 
+			objclass = '.profile-table'; 
 			}
 	
 	if ( $('div').hasClass('gallery')) { 
@@ -274,16 +274,20 @@ jQuery(document).ready(function($){
 	
 	
 	/****sort by column tabular list view - display=list ************/
-	var headerdiv = $("div.wsuprofileTableRowHeader");
+//	var headerdiv = $("div.wsuprofileTableRowHeader");
+	var headerdiv = $("div.profile-table-row-header");
 	//alert(headerdiv.wsuprofileTableHead);
 	
-	var $divs = $("div.wsuprofileTableRowData");
+//	var $divs = $("div.wsuprofileTableRowData");
+	var $divs = $("div.profile-table-row-data");
 
-	jQuery('.wsuprofileTableHead').bind("click", function(){
-		var idString = $( this ).attr( "id");
-		
-		jqidString = "#" + idString;
-	// alert( idString );
+	jQuery('.profile-table-head').bind("click", function(){
+//		var idString = $( this ).attr( "id");
+		var idString = $(this).attr("class").split(' ')[1];
+	//	alert ( idString );
+	//	jqidString = "#" + idString;
+		jqidString = "." + idString;
+	
 		
 //	jQuery('#tbname').on('click', function() {
 	jQuery( jqidString,  function() {	
@@ -299,7 +303,8 @@ jQuery(document).ready(function($){
 			
 //		var findiclasscode = ".wsuprofileTableCell.name a";
 
-		var findiclasscode = ".wsuprofileTableCell." + idString;
+		var findiclasscode = ".profile-table-cell." + idString;
+		
 	
 		
 		if ( idString == 'name') { findiclasscode + " a"} ;
@@ -314,8 +319,8 @@ jQuery(document).ready(function($){
 			}
 		
 			});
-			$(".wsuprofileTableRowData").remove();
-			$(".wsuprofileTable").append( alphabeticalOrderDivs );
+			$(".profile-table-row-data").remove();
+			$(".profile-table").append( alphabeticalOrderDivs );
 			//$(".wsuprofileTable").html(alphabeticalOrderDivs);
 			//$(".wsuprofileTable").prepend('<div class="wsuprofileTableRowHeader"><div class="wsuprofileTableHead"></div><div class="wsuprofileTableHead desc" id="tbname">Name</div><div class="wsuprofileTableHead" id="tbtitle">Title</div><div class="wsuprofileTableHead" id="tbdeparment">Department</div><div class="wsuprofileTableHead" id="tbwork-group">Work Group</div></div>');
 
@@ -346,8 +351,8 @@ jQuery(document).ready(function($){
 					searchclass = "article";
 				} 
 		 
-			 if ( jQuery('.wsuprofileTableRowData').length) {
-					searchclass = ".wsuprofileTableRowData";	
+			 if ( jQuery('.profile-table-row-data').length) {
+					searchclass = ".profile-table-row-data";	
 				}
 			
 //			searchclass = ".wsuprofileTableRowData";

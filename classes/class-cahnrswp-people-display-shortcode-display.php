@@ -353,8 +353,6 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				
 				break;
 		} //end switch
-		
-			//$field_html.= ob_get_clean();
 			
 			return $field_html.= ob_get_clean();
 			
@@ -406,9 +404,14 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 			$percent_width = $which_cell_widths_array[ $cell_width_index ] . '%';	
 	
 //var_dump('class ' . $cell_class . ' percent_width ' .$percent_width . ' cell_width_index ' . $cell_width_index . '<br />');
+		  if ($cell_class == 'photo') {
 
-			$html .= '<div class="profile-table-head ' . $cell_class . '" width="' . $percent_width .'">'.  $cell_class .'<div class="arrows"></div></div>';
-	
+	   		$html .= '<div class="profile-table-head ' . $cell_class . '" width="' . $percent_width .'"></div>';			  
+
+			  } else {
+				 	
+     		$html .= '<div class="profile-table-head ' . $cell_class . '" id="#' . $cell_class . '" width="' . $percent_width .'">'.  $cell_class .'<div class="arrows both"></div></div>';
+				}
 			 $cell_width_index++;
 			
             }
@@ -450,9 +453,10 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	public function pagination( $count, $number_of_profiles ) {
 		
 		$inc = $count;
-	//	$number_of_profiles = count($display_profiles);
 		
-		//$page_nav = $number_of_profiles;
+	//	$number_of_profiles = count($display_profiles);	
+	//	$page_nav = $number_of_profiles;
+	
 		$nav_html = '';
 		
 		$nav_html = '<nav data-inc="' . $inc . '">';
@@ -475,19 +479,12 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$html = '';
 		
 		$html .= '<div class="pagination">';
-	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
 		$html .= $nav_html;
-	//	$html .= '<a class="paging_button next">Next</a>';
 		$html .= '</div>';
 		
 		return $html;
 		
 		}
-
-	 
-	 
-		 
-
 
 	 
 } //end CAHNRSWP_People_Displays_Shortcode_Displays	 
