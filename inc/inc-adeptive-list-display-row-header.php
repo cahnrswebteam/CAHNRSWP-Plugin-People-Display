@@ -1,1 +1,1 @@
-<div class="profile-table-row-data <?php echo $class; ?>">
+<div class="profile-table-row-data<?php echo $class == '' ? '' : ' ' . $class ?>">

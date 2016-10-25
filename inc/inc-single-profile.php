@@ -5,8 +5,7 @@
 <?php  echo $office; ?><br />
 <?php  echo $phone; ?><br />
 <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a><br />
-<!--- <a href="mailto:<?php // echo $one_profile->email;?>"><?php// echo $one_profile->email;?></a><br /> --->
-<a href="<?php  echo $one_profile->website; ?>">Website</a><br />
+<?php echo $one_profile->website == '' ? '' : '<a href="' . $one_profile->website . '">Website</a><br />'; ?>
 <?php echo $title; ?>
 <?php // echo implode("," , $one_profile->degrees); ?><br />
 <?php // echo  implode("," ,$one_profile->college_bio); ?>

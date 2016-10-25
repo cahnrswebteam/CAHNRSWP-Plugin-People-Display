@@ -60,6 +60,12 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		 
 		extract($atts);
 		
+			
+		$profile_list_elements = array();	
+		$profile_list_elements = explode("," , $fields);
+		
+		$excluded = explode(",", $exclude);
+		
 		$number_of_profiles = count($display_profiles);
 
 		//var_dump($display_profiles);
@@ -78,12 +84,55 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		}
 			
 			$results .= '</div>';		
-
+			
+		 $title = '';
+		 $email = '';
+		 $office = '';
+		 $phone ='';
 		
 		  			  
 		 $i = 0;
 		 	     
-		  foreach ($display_profiles as $profile ) {					
+		  foreach ($display_profiles as $profile ) {		
+		  
+		  	  if ( isset ($profile->profile_working_title[0]) ) {
+					$title = $profile->profile_working_title[0];									  
+				} else {
+					$title = $profile->profile_position_title;
+				}
+			
+			if ( !empty($profile->profile_email_alt) ) {
+					$email = $profile->profile_email_alt;									  
+				} else {
+					$email = $profile->profile_email;
+				}
+				
+			if ( !empty($profile->profile_office_alt) ) {
+					$office = $profile->profile_office_alt;									  
+				} else {
+					$office = $profile->profile_office;
+				}
+				
+			if ( !empty($profile->profile_phone_alt) ) {
+					$phone = $profile->profile_phone_alt;									  
+				} else {
+					$phone = $profile->profile_phone;
+				}					
+	
+			if (in_array("email", $excluded)) {
+				 $email = '';
+				}
+				
+			if (in_array("phone", $excluded)) {
+				 $phone = '';
+				}	
+			if (in_array("profile", $excluded)) {
+			//	 $profile-link = '';
+				}		
+				
+			if (in_array("name", $excluded)) {
+				
+				}			
 				
 				$class = ( $i < $count ) ? '' : 'hidden';
 						
@@ -97,8 +146,16 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				$i++;
 				
 		  } // end foreach
+		  
+		   if ($count > $number_of_profiles ) {
+
+					 $results .= '';
+				 } else {
+					 
+					 $results .= $this->pagination( $count,  $number_of_profiles );		  
+				 }
 			 
-			 $results .= $this->pagination( $count,  $number_of_profiles );		  
+//			 $results .= $this->pagination( $count,  $number_of_profiles );		  
 			 $results .= '</div>';	
  			 $results .= '</div>';	//close wrappter 			
 		  return $results;
@@ -113,6 +170,11 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		extract($atts);
 		
 		$number_of_profiles = count($display_profiles);
+		
+		$profile_list_elements = array();	
+		$profile_list_elements = explode("," , $fields);
+		
+		$excluded = explode(",", $exclude);
 
 		//var_dump($display_profiles);
 		
@@ -132,11 +194,54 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 			
 			$results .= '</div>';		
 
-		
+		 $title = '';
+		 $email = '';
+		 $office = '';
+		 $phone ='';
 		  			  
 		 $i = 0;
 		 	     
-		  foreach ($display_profiles as $profile ) {					
+		  foreach ($display_profiles as $profile ) {		
+		  
+		  
+		  	  if ( isset ($profile->profile_working_title[0]) ) {
+					$title = $profile->profile_working_title[0];									  
+				} else {
+					$title = $profile->profile_position_title;
+				}
+			
+			if ( !empty($profile->profile_email_alt) ) {
+					$email = $profile->profile_email_alt;									  
+				} else {
+					$email = $profile->profile_email;
+				}
+				
+			if ( !empty($profile->profile_office_alt) ) {
+					$office = $profile->profile_office_alt;									  
+				} else {
+					$office = $profile->profile_office;
+				}
+				
+			if ( !empty($profile->profile_phone_alt) ) {
+					$phone = $profile->profile_phone_alt;									  
+				} else {
+					$phone = $profile->profile_phone;
+				}					
+	
+			if (in_array("email", $excluded)) {
+				 $email = '';
+				}
+				
+			if (in_array("phone", $excluded)) {
+				 $phone = '';
+				}	
+			if (in_array("profile", $excluded)) {
+			//	 $profile-link = '';
+				}		
+				
+			if (in_array("name", $excluded)) {
+				
+				}			
 				
 			//	$class = ( $i < $count ) ? 'display' : '';
 			
@@ -153,7 +258,15 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				
 		  } // end foreach
 			 
-			 $results .= $this->pagination( $count,  $number_of_profiles );		  
+			  if ($count > $number_of_profiles ) {
+
+					 $results .= '';
+				 } else {
+					 
+					 $results .= $this->pagination( $count,  $number_of_profiles );		  
+				 }
+			 
+//			 $results .= $this->pagination( $count,  $number_of_profiles );		  
 			 $results .= '</div>';
 			 $results .= '</div>';	//close wrappter 		
 		  return $results;
@@ -309,7 +422,13 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 
 			 $results .= '</div>';	//close wsuprofileTable
 			 
-			 $results .= $this->pagination( $count,  $number_of_profiles );		  
+			 if ($count > $number_of_profiles ) {
+
+					 $results .= '';
+				 } else {
+					 
+					 $results .= $this->pagination( $count,  $number_of_profiles );		  
+				 }
 			 $results .= '</div>';	//close wrappter 
 		  return $results;
 		 
@@ -353,6 +472,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 				
 				break;
 		} //end switch
+		
+			
 			
 			return $field_html.= ob_get_clean();
 			
@@ -404,17 +525,21 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 			$percent_width = $which_cell_widths_array[ $cell_width_index ] . '%';	
 	
 //var_dump('class ' . $cell_class . ' percent_width ' .$percent_width . ' cell_width_index ' . $cell_width_index . '<br />');
-		  if ($cell_class == 'photo') {
+			$space_cell_class = ' '. $cell_class;
+			
+			if ($cell_class == 'photo') {
 
-	   		$html .= '<div class="profile-table-head ' . $cell_class . '" width="' . $percent_width .'"></div>';			  
-
-			  } else {
-				 	
-     		$html .= '<div class="profile-table-head ' . $cell_class . '" id="#' . $cell_class . '" width="' . $percent_width .'">'.  $cell_class .'<div class="arrows both"></div></div>';
-				}
+			 $html .= '<div class="profile-table-head' . $space_cell_class . '" width="' . $percent_width .'"></div>';	
+				
+			} else {
+			
+			 $html .= '<div class="profile-table-head' . $space_cell_class . '" width="' . $percent_width .'">'.  $cell_class .'<div class="arrows both"></div></div>';
+			
+			}
+	
 			 $cell_width_index++;
 			
-            }
+            } // foreach
            
             
 		  $html .= '</div>';
@@ -453,10 +578,9 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 	public function pagination( $count, $number_of_profiles ) {
 		
 		$inc = $count;
+	//	$number_of_profiles = count($display_profiles);
 		
-	//	$number_of_profiles = count($display_profiles);	
-	//	$page_nav = $number_of_profiles;
-	
+		//$page_nav = $number_of_profiles;
 		$nav_html = '';
 		
 		$nav_html = '<nav data-inc="' . $inc . '">';
@@ -479,12 +603,19 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$html = '';
 		
 		$html .= '<div class="pagination">';
+	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
 		$html .= $nav_html;
+	//	$html .= '<a class="paging_button next">Next</a>';
 		$html .= '</div>';
 		
 		return $html;
 		
 		}
+
+	 
+	 
+		 
+
 
 	 
 } //end CAHNRSWP_People_Displays_Shortcode_Displays	 
