@@ -603,9 +603,7 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		$html = '';
 		
 		$html .= '<div class="pagination">';
-	//	$html .= '<a class="paging_button previous disabled"> < Previous</a>';
-		$html .= $nav_html;
-	//	$html .= '<a class="paging_button next">Next</a>';
+		$html .= $nav_html . '<div class="profiles-count">(' . $number_of_profiles . ' profiles)</div>';
 		$html .= '</div>';
 		
 		return $html;

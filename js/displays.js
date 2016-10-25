@@ -28,22 +28,34 @@ jQuery(document).ready(function($){
 			
 		var active_index = directory.find('nav a.active' ).index();
 		
-		var last_index = directory.find('.pagination > nav a').length - 1;
+	//	var last_index_length = directory.find('.pagination > nav a').length;
 		
-	//	alert(active_index);
+		var last_index = directory.find('.pagination > nav a').length - 2;
+
+		var prv1 = directory.find('nav a.active').prev();
+		var nxt1 = directory.find('nav a.active').next();
 		
-		if ( ( jQuery( this ).hasClass('next') ) && ( active_index < last_index )  ) {
-				var nxt = directory.find('nav a.active').next();
-				directory.find('nav a').removeClass('active');	
-				change_set_by_a( nxt );		
+		var nxt_index = nxt1.index();
+		var prv_index = prv1.index();
+
+				
+		if ( ( jQuery( this ).hasClass('next') ) ) {
+			//	var nxt = directory.find('nav a.active').next();
+				
+				if ( nxt_index <= last_index) {
+					directory.find('nav a').removeClass('active');
+					change_set_by_a( nxt1 );		
+				}
 
 			} else if ( jQuery( this ).hasClass('previous') )  {
-				var prv = directory.find('nav a.active').prev();
-				directory.find('nav a').removeClass('active');	
-				change_set_by_a( prv );		
-
+			//	var prv = directory.find('nav a.active').prev();
+				
+				if ( prv_index > 0 ) {		
+					directory.find('nav a').removeClass('active');	
+					change_set_by_a( prv1 );
+				}
+		
 			}	else {
-			//	alert('in else');
 			directory.find('nav a').removeClass('active');	
     		change_set_by_a( jQuery( this ) );
 			}

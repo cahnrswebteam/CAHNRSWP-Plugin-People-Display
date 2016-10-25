@@ -341,8 +341,10 @@ font-size: .9rem;
 /********** pagination ***************/
 
 .pagination {
-	text-align: left;
+/*	text-align: left; */
+display: inline-block;
 	}
+	
 .pagination a {
 	color: #717171;
 	}	
@@ -350,6 +352,11 @@ font-size: .9rem;
 	color: #981e32;
 	position: relative;
 	}
+
+.profiles-count {
+	 text-align: center;
+
+	}	
 	
 
 a.next:after, a.previous:before {
