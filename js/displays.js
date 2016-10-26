@@ -2,24 +2,8 @@
 jQuery(document).ready(function($){
 	
 	var default_title = document.title;
-	
 
-	/*
-	jQuery('a.next').on( 'click' , function( event ) {
-		var	nc = jQuery('nav a.active' ).index();  
-			nc++;
-		var curr = jQuery('nav a.active');
-			curr.next('nav a').css({"background-color": "red"});
-	var nxt = curr.next('nav a');
-		change_set_by_a( jQuery( nxt ) );
-
-		});
 		
-	jQuery('nav a.previous').click( function() {
-		
-		});	
-	*/	
-	
 	/*** pagination by Danial method *****/
 	
 	jQuery('nav a').click( function(){
@@ -115,145 +99,25 @@ jQuery(document).ready(function($){
 				$( 'html,body').animate({scrollTop: 0}, 'fast');	
 			} //Scroll to top for column-list
 			
-/*			
-		if ( ( jQuery('article').length ) ) {
-		
-			items.each( function() {
-			if (( i >= start ) && ( i <= end ) ) {
-				
-				jQuery( this ).removeClass('hidden');
-				
-				} else {
-					
-				jQuery( this ).addClass('hidden');
-				} // end if 
-	
-				i++;
-			}) 
-			
-			} // gallery article
-				
-		
-		if ( ( jQuery('.column-list-profile').length ) ) {
-		
-			items.each( function() {
-			if (( i >= start ) && ( i <= end ) ) {
-				
-				jQuery( this ).addClass('display');
-				
-				} else {
-					
-				jQuery( this ).removeClass('display');
-				} // end if 
-	
-				i++;
-			})	
-			
-			
-			} else {  //if column-list-profile
-			
-		
-			items.each( function() {
-				if (( i >= start ) && ( i <= end ) ) {
-				
-					jQuery( this ).addClass('row-display');
-				
-					} else {
-					
-					jQuery( this ).removeClass('row-display');
-					} // end if 
-	
-					i++;
-				})	
-			
-			} //end else
-	*/	
+
 	
 	
 	} //end change_set_by_a 
 	
-	/* used .slice to display table rows for pagination */
-/*	
-	var row_Count = jQuery( ".wsuprofileTableRowData").length;
-	var per_page = jQuery(".wsuprofileTableRowHeader").data( 'id' );
-	var number_of_pages = Math.ceil( row_Count/per_page );
-	var start_count = 0;
-	
-	var end_count = per_page;
-	
-	var limit = (per_page * number_of_pages);
-
-	jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
-	
-	jQuery( "a.paging_button.next").on( 'click' , function() {
-		jQuery("a.paging_button").removeClass("disabled");
-		
-		
-		start_count = start_count + per_page;
-		end_count = end_count + per_page;
-		
-		
-		if ( end_count > limit ){ 
-			start_count = limit - per_page;
-			end_count = limit;
-	       jQuery("a.paging_button.next").addClass("disabled");			
-		  }	
-
-
-		jQuery( ".wsuprofileTableRowData").removeClass("row-display");
-		jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
-		
-		
-		});
-		
-	jQuery( "a.paging_button.previous").on( 'click' , function() {
-		jQuery("a.paging_button").removeClass("disabled");
-		
-			
-			start_count = start_count - per_page;
-			end_count = end_count - per_page;
-			
-			if (start_count < 0) { 
-					start_count = 0;
-					end_count = per_page;
-					jQuery("a.paging_button.previous").addClass("disabled");
-					}
-			
-			jQuery( ".wsuprofileTableRowData").removeClass("row-display");
-			jQuery( ".wsuprofileTableRowData").slice( start_count, end_count ).addClass("row-display");
-		
-		});
-*/	
 	
 // Show a full profile. - Phil's code
 
 //	jQuery( '.wsuprofileTable' ).on( 'click', '.profile-link', function(e) {
-	jQuery( '.profile-link' ).click(function(e) {
+//	jQuery( '.profile-link' ).click(function(e) {
+	jQuery( '.profile-table, .column-list-profiles, .profile-gallery' ).on("click", '.profile-link',  function( e ) {
 		e.preventDefault();
 		
+//		var display_type = jQuery( this ).parents();
 		
 	//	var name = $(this).data( 'name' );
 	//	var id = $(this).data( 'id' );
 	//	alert(id);
-/*	
-	var objclass = '';
-	
-	if ( $('div').hasClass('profile-table'))  { 
-			objclass = '.profile-table'; 
-			}
-	
-	if ( $('div').hasClass('gallery')) { 
-		objclass = '.gallery'; 
-		}
-		
-		
-	if ( $('div').hasClass('column-list-profile')) { 
-		objclass = '.column-list-profiles'; 
-		}
-*/	
-	//	objclass = '.wsuprofileTable'; 
 
-	
 		
 	//	jQuery('<div class="cahnrswp-people-single-profile"></div>').appendTo( jQuery(this).parents('.wsuprofileTable')).fadeIn(500);
 	//cahnrswp-people-single-profile-background 
@@ -280,7 +144,7 @@ jQuery(document).ready(function($){
 				}
 		})
 
-	}) // click
+	}) // click profile-link
 	
 	jQuery( 'div' ).on( 'click' , '.close', function(e) {
 				if (e.target == this) {
@@ -302,7 +166,7 @@ jQuery(document).ready(function($){
 //	var $divs = $("div.wsuprofileTableRowData");
 	var $divs = $("div.profile-table-row-data");
 
-	jQuery('.profile-table-head').bind("click", function(){
+	jQuery('.profile-table-head').on("click", function(){
 //		var idString = $( this ).attr( "id");
 		var idString = $(this).attr("class").split(' ')[1];
 	//	alert ( idString );
