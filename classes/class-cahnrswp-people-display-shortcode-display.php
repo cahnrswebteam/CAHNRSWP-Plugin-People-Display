@@ -74,8 +74,8 @@ class CAHNRSWP_People_Displays_Shorcode_Display extends CAHNRSWP_People_Displays
 		
 	    $results = '';
 	    $results .= '<div class="cahnrswp-people-display-wrapper">';
-		$results .= '<div class="gallery">';
-		$results .= '<div class="gallery-people-header">';
+		$results .= '<div class="profile-gallery">';
+		$results .= '<div class="profile-gallery-people-header">';
 		
         $results .= $this->directory_heading( $directory_title );
 

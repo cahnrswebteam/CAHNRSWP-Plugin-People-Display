@@ -25,6 +25,8 @@ jQuery(document).ready(function($){
 	jQuery('nav a').click( function(){
 		
 		var directory = jQuery( this ).closest( '.cahnrswp-people-display-wrapper');
+
+	//	directory.css({"background-color":"yellow"});
 			
 		var active_index = directory.find('nav a.active' ).index();
 		
@@ -67,19 +69,25 @@ jQuery(document).ready(function($){
 	var change_set_by_a = function( ic ){
 		
 		ic.addClass('active');
+//		ic.closest('.column-list-profiles').closest('.column-list-profile').css({"background-color":"green"});
 		
+		var closedir = ic.closest('.column-list-profiles'); 
 	
-		if ( jQuery('.column-list-profile').length ) { 
-				var items = jQuery('.column-list-profile');
-			//	alert('inside c l profile class');
-		} else if ( jQuery('article').length ) {
-				var items = jQuery('article');
+			
+		
+		if (  closedir.find('.column-list-profile').length ) { 
+				var items = closedir.find('.column-list-profile');
+		//		alert('inside c l profile class');
+			
+		} else if ( jQuery('.profile-gallery article').length ) {
+				var items = jQuery('.profile-gallery article');
 		} 
 		 
 		 if ( jQuery('.profile-table-row-data').length) {
 				var items = jQuery('.profile-table-row-data');	
 			}
-							
+		
+								
 		var inc = ic.closest('nav').data('inc');	
 		var index = ic.index();
 		index = index - 1;
@@ -93,9 +101,10 @@ jQuery(document).ready(function($){
 			if (( i >= start ) && ( i <= end ) ) {
 				
 				jQuery( this ).removeClass('hidden');
+								
 				
 				} else {
-					
+				
 				jQuery( this ).addClass('hidden');
 				} // end if 
 	
@@ -226,7 +235,7 @@ jQuery(document).ready(function($){
 	//	var name = $(this).data( 'name' );
 	//	var id = $(this).data( 'id' );
 	//	alert(id);
-	
+/*	
 	var objclass = '';
 	
 	if ( $('div').hasClass('profile-table'))  { 
@@ -241,7 +250,7 @@ jQuery(document).ready(function($){
 	if ( $('div').hasClass('column-list-profile')) { 
 		objclass = '.column-list-profiles'; 
 		}
-	
+*/	
 	//	objclass = '.wsuprofileTable'; 
 
 	

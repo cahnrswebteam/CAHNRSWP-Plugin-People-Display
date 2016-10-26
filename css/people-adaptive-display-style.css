@@ -95,11 +95,7 @@
  /*   padding-top: 1.25rem;   */
 }
 
-/*
-.profile-table-head.name { 
-	width: 22%;
-}
-*/
+
 .profile-table-head.title, .profile-table-head.department { 
 	width: 18%;
 
@@ -109,14 +105,7 @@
 
 }
 
-/*
-.name {
-	font-size: 1rem;
-	font-weight: 400;
-    line-height: .1rem;
- 
-	}
-*/
+
 .profile-table-cell .phone-email {
 	font-size: .75rem;
 	padding: 5px 0;
@@ -134,7 +123,7 @@
 
 
 .profile-table-cell .phone-email a.profile-link:after,
-.gallery article .gallery-link a.profile-link:after{
+.profile-gallery article .profile-gallery-link a.profile-link:after{
 	left: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -155,12 +144,104 @@
 	vertical-align:bottom;
 	}	
 
-/*
-.row-display {
-	display:table-row; 
+/******* Gallery *************/
 
+.profile-gallery {
+/*	background: #fff; */
+	
+	}
+.profile-gallery img {
+	border: none;
 	}	
-*/
+	
+
+.profile-gallery .profile-gallery-people-header {
+	position:relative;
+	}
+
+.profile-gallery article {
+    display: inline-block; 
+    margin-top: 10px;
+    width: 25%;
+    vertical-align: top;
+	margin-right: -4px;
+	box-sizing:border-box;
+	
+	}	
+	
+ .hidden {
+	position:absolute;
+	top: -9999px;
+	left: -9999px;
+	visibility:hidden;
+	}			
+
+
+.profile-gallery article ul {
+	list-style-type: none;
+    margin: 0 .3rem .3rem;
+    padding: 0;
+}
+
+
+
+.profile-gallery article > ul {
+
+ background-color: #fff; 
+  /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
+   min-height: 325px;
+   position: relative;
+   
+	
+}
+.profile-gallery article ul li {
+	
+	line-height: 1.3em;
+	
+}
+
+.profile-gallery .show {
+	display: inline-block;
+	}
+
+.profile-gallery article .profile-gallery-photo {
+	margin-left:0%;
+	
+	}
+
+.profile-gallery article .profile-gallery-photo img{	
+	width: 100%;
+	display: block;
+	margin: 0 8px .3em 0; 
+	}	
+	
+.profile-gallery article .profile-gallery-name {
+	color: #981e32; 
+	font-size: .95rem;
+	font-weight: bold;
+	}	
+	
+.profile-gallery article .profile-gallery-title {
+	font-size: .80rem;
+	}	
+	
+.profile-gallery article .profile-gallery-link a {
+
+	font-size: .55rem;
+	font-weight: bold;
+	position: relative;
+	}
+	
+.profile-gallery article .profile-gallery-link {	
+	position: relative;
+}
+
+.profile-gallery .pagination {
+	display: block;
+    text-align: center;
+	}
+
+
 
 /****************************/
 
@@ -179,7 +260,6 @@
 	padding-top: .5rem;
 	}	
 
-	
 .profile-table-row-header {
 		display: none;
 	}
@@ -188,10 +268,10 @@
 		line-height: .1rem;
 		}
 	.profile-table-cell.photo {
-		width: 100%;
+		width: 70%
 		}
 	.profile-table-cell.photo img {	
-		width: 40%;
+		width: 100%;
 	}
 	
 	.profile-table-row-data {
@@ -216,12 +296,15 @@
 		position: relative;
 	}	
 			
-
+	.profile-table-cell .phone-email {
+     	padding: 12px 0;
+      }
+	  
 .cahnrswp-people-single-profile { 
 
 	max-width: 95%;
 	width: 93%;
-	max-height: 40%;
+	max-height: 90%;
 	
 	}		
 
@@ -229,10 +312,10 @@
 	
 	/**** gallery section *****/
 	
-	.gallery article {
+	.profile-gallery article {
 	  width: 50%;	
 	}
-	.gallery .gallery-people-header {
+	.profile-gallery .profile-gallery-people-header {
 		position:relative;
 		padding-bottom: 1.5rem;
 	}
@@ -246,7 +329,7 @@
 		line-height: .1rem;
 		}
 	.profile-table-cell.photo {
-		width: 100%;
+		width: 70%;
 		}
 	.profile-table-cell.photo img {	
 		width: 100%;
@@ -260,6 +343,7 @@
 		border: none;	
 		width: 100%;
 		}	
+		
 	.profile-table-cell.photo {	
 		border-top: 1px solid #ddd;
 	}		
@@ -275,11 +359,15 @@
 	.search-toolbar {
 		position: relative;
 	}	
-	.profile-table-cell.photo {
-		width: 45%;
-		}
 	
-	.gallery article {
+	.search-toolbar input[type="button"] {
+
+		height: 23px;
+		background-size: 24px auto;
+	
+	}
+
+	.profile-gallery article {
 	  width: 100%;	
 	}
 	

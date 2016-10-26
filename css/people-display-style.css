@@ -403,6 +403,7 @@ nav > a {
 .column-list-people-header h3.dir-heading {
 	display: block;
 	font-size: 1.25rem;
+	text-align: center;
 	}
 
 .column-list-profile {
@@ -461,6 +462,7 @@ nav > a {
 
 .column-list-profiles > .pagination {
 	text-align:center;
+    display: block;
 	}
 
 .display, .column-list-display {
@@ -496,14 +498,14 @@ nav > a {
 	box-sizing:border-box;
 	
 	}	
-	
+/*	
  .hidden {
 	position:absolute;
 	top: -9999px;
 	left: -9999px;
 	visibility:hidden;
 	}			
-
+*/
 
 .gallery article ul {
 	list-style-type: none;
@@ -561,6 +563,11 @@ nav > a {
 .gallery article .gallery-link {	
 	position: relative;
 }
+
+.gallery .pagination {
+	display: block;
+    text-align: center;
+	}
 /*
 .gallery article .gallery-link:after  {
 	left: 42%;
